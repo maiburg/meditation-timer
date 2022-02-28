@@ -1,0 +1,5 @@
+<StackLayout>
+  <TextField class="form-control" hint="Challenge Title" #test></TextField>
+  <Button class="btn" (tap)="challengeDescription = test.text" text="Set Challenge"></Button>
+  <Label [text]="challengeDescription"></Label>
+</StackLayout>
