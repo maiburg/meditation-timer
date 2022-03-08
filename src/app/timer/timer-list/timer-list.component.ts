@@ -10,4 +10,8 @@ export class TimerListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  get returnTwo(): number {
+    return 2;
+  }
 }

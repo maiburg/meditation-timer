@@ -12,13 +12,17 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"],
-      "@/*": ["src/*"]
-    },
+      "@/*": ["src/*"],
+      "nativescript-internal-plugin": ["../nativescript-internal-plugin"],
+      "nativescript-internal-plugin/*": ["../nativescript-internal-plugin/*"]
+    }
   },
-  "include": ["src/tests/**/*.ts", "src/**/*.ios.ts", "src/**/*.android.ts"],
+  "include": ["../nativescript-internal-plugin/**/*.ts", "src/**/*.ios.ts", "src/**/*.android.ts"],
   "files": ["./src/main.ts", "./references.d.ts", "./src/polyfills.ts"],
-  "exclude": ["node_modules", "platforms", "e2e"],
-  "angularCompilerOptions": {
-    "strictTemplates": true
-  }
+  "exclude": ["node_modules", "platforms", "e2e", "../nativescript-internal-plugin/**/*.spec.ts"],
+  "references": [
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
 }

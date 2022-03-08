@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { TimerListComponent } from './timer-list.component';
 
-describe('StackComponent', () => {
+describe('TimerListComponent', () => {
   let component: TimerListComponent;
   let fixture: ComponentFixture<TimerListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TimerListComponent ]
-    })
-    .compileComponents();
+      declarations: [TimerListComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,11 @@ describe('StackComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('returnTwo() should', () => {
+    it('return 2', () => {
+      const num = 2;
+
+      expect(component.returnTwo).toBe(num);
+    });
   });
 });
