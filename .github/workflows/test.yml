@@ -10,15 +10,15 @@ jobs:
         run: sudo gem install xcodeproj
       - name: Install python six package
         run: pip install six
-      - name: Finally install NativeScript
+      - name: Install NativeScript
         run: npm i -g nativescript
       - name: Restart bash
         run: exec bash
       - name: Check if NativeScript is configured properly
         run: tns doctor
-      # - name: checkout repo
-      #   uses: actions/checkout@v3
-      # - name: npm install
-      #   run: npm i
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: npm install
+        run: npm i
       - name: List NativeScript devices
         run: tns device
