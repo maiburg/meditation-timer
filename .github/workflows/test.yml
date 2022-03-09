@@ -16,9 +16,11 @@ jobs:
         run: exec bash
       - name: Check if NativeScript is configured properly
         run: tns doctor
-      - name: checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v3
-      - name: npm install
+      - name: Install node packages
         run: npm i
+      - name: build NativeScript
+        run: tns run ios
       - name: List NativeScript devices
         run: tns device
