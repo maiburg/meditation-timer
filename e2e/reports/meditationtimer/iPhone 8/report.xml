@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AppiumAUT>
+  <XCUIElementTypeApplication type="XCUIElementTypeApplication" name="meditationtimer" label="meditationtimer" enabled="true" visible="true" accessible="false" x="0" y="0" width="375" height="667" index="0">
+    <XCUIElementTypeWindow type="XCUIElementTypeWindow" enabled="true" visible="true" accessible="false" x="0" y="0" width="375" height="667" index="0">
+      <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="375" height="667" index="0">
+        <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="375" height="667" index="0">
+          <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="375" height="667" index="0">
+            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="70" width="375" height="597" index="0">
+              <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Ich bin ein Label" name="Ich bin ein Label" label="Ich bin ein Label" enabled="true" visible="true" accessible="true" x="0" y="70" width="375" height="19" index="0"/>
+              <XCUIElementTypeButton type="XCUIElementTypeButton" name="xxx" label="xxx" enabled="true" visible="true" accessible="true" x="16" y="96" width="343" height="41" index="1">
+                <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="xxx" name="xxx" label="xxx" enabled="true" visible="true" accessible="false" x="176" y="108" width="23" height="17" index="0"/>
+              </XCUIElementTypeButton>
+            </XCUIElementTypeOther>
+          </XCUIElementTypeOther>
+        </XCUIElementTypeOther>
+      </XCUIElementTypeOther>
+    </XCUIElementTypeWindow>
+  </XCUIElementTypeApplication>
+</AppiumAUT>

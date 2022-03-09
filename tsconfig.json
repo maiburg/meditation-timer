@@ -17,6 +17,10 @@
       "nativescript-internal-plugin/*": ["../nativescript-internal-plugin/*"]
     }
   },
+  "angularCompilerOptions": {
+    "strictTemplates": false,
+    "strictInjectionParameters": true
+  },
   "include": ["../nativescript-internal-plugin/**/*.ts", "src/**/*.ios.ts", "src/**/*.android.ts"],
   "files": ["./src/main.ts", "./references.d.ts", "./src/polyfills.ts"],
   "exclude": ["node_modules", "platforms", "e2e", "../nativescript-internal-plugin/**/*.spec.ts"],
