@@ -27,7 +27,7 @@ module.exports = function (config) {
         arguments: ['--emulator']
       }
     },
-    singleRun: false
+    // singleRun: false
   };
 
   if (config._NS && config._NS.env && config._NS.env.codeCoverage) {
