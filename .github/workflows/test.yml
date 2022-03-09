@@ -23,6 +23,6 @@ jobs:
       - name: Create directory nativescript-internal-plugin
         run: mkdir ../nativescript-internal-plugin
       - name: Test NativeScript
-        run: tns test ios
+        run: tns test ios --single
       - name: List NativeScript devices
         run: tns device
