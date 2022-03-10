@@ -19,7 +19,7 @@ describe('TimerListComponent', () => {
 
   describe('returnTwo() should', () => {
     it('return 2', () => {
-      const num = 3;
+      const num = 2;
 
       expect(component.returnTwo).toBe(num);
     });
