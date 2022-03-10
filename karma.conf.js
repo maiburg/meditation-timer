@@ -27,7 +27,7 @@ module.exports = function (config) {
         arguments: ['--emulator']
       }
     },
-    singleRun: process.env.GITHUB_ACTIONS
+    singleRun: process.env.GITHUB_ACTIONS || false
   };
 
   if (config._NS && config._NS.env && config._NS.env.codeCoverage) {
