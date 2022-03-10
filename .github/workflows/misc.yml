@@ -1,0 +1,10 @@
+name: Misc
+
+on: []
+
+jobs:
+  run-shell-command:
+    runs-on: macos-latest
+    steps:
+      - name: Get environment variables
+        run: env
