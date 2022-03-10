@@ -27,13 +27,17 @@ module.exports = function (config) {
         arguments: ['--emulator']
       }
     },
-    singleRun: true
+    singleRun: false
   };
 
   console.log(config);
 
   if (config._NS && config._NS.env && config._NS.env.codeCoverage) {
     options.reporters = (options.reporters || []).concat(['coverage']);
+  }
+
+  if(config.projectDir && config.projectDir === '/Users/runner/work/meditation-timer/meditation-timer') {
+    options.singleRun = true;
   }
 
   config.set(options);
