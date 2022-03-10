@@ -30,8 +30,6 @@ module.exports = function (config) {
     singleRun: process.env.USER === 'runner'
   };
 
-  console.log('RRRRRRRRRR', config.singleRun);
-
   if (config._NS && config._NS.env && config._NS.env.codeCoverage) {
     options.reporters = (options.reporters || []).concat(['coverage']);
   }
