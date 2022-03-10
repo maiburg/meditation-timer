@@ -38,5 +38,7 @@ module.exports = function (config) {
     options.singleRun = true;
   }
 
+  console.log('### OPTIONS ###', options);
+
   config.set(options);
 };
