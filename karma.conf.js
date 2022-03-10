@@ -36,5 +36,7 @@ module.exports = function (config) {
 
   console.log('### KARMA OPTIONS ###', options);
 
+  console.log('### PROCESS ENV ###', process.env)
+
   config.set(options);
 };
