@@ -27,15 +27,11 @@ module.exports = function (config) {
         arguments: ['--emulator']
       }
     },
-    singleRun: false
+    singleRun: config.projectDir && config.projectDir === '/Users/runner/work/meditation-timer/meditation-timer'
   };
 
   if (config._NS && config._NS.env && config._NS.env.codeCoverage) {
     options.reporters = (options.reporters || []).concat(['coverage']);
-  }
-
-  if(config.projectDir && config.projectDir === '/Users/runner/work/meditation-timer/meditation-timer') {
-    options.singleRun = true;
   }
 
   console.log('### OPTIONS ###', options);
