@@ -27,16 +27,12 @@ module.exports = function (config) {
         arguments: ['--emulator']
       }
     },
-    singleRun: config.projectDir && config.projectDir === '/Users/runner/work/meditation-timer/meditation-timer'
+    singleRun: process.env.USER === 'runner'
   };
 
   if (config._NS && config._NS.env && config._NS.env.codeCoverage) {
     options.reporters = (options.reporters || []).concat(['coverage']);
   }
-
-  console.log('### KARMA OPTIONS ###', options);
-
-  console.log('### PROCESS ENV ###', process.env)
 
   config.set(options);
 };
