@@ -1,6 +1,6 @@
 name: Misc
 
-on: []
+on: [push]
 
 jobs:
   run-shell-command:
