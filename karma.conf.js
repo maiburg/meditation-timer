@@ -34,7 +34,7 @@ module.exports = function (config) {
     options.reporters = (options.reporters || []).concat(['coverage']);
   }
 
-  console.log('### OPTIONS ###', options);
+  console.log('### KARMA OPTIONS ###', options);
 
   config.set(options);
 };
