@@ -8,22 +8,47 @@
     "noEmitHelpers": true,
     "noEmitOnError": true,
     "skipLibCheck": true,
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"],
-      "@/*": ["src/*"],
-      "nativescript-internal-plugin": ["../nativescript-internal-plugin"],
-      "nativescript-internal-plugin/*": ["../nativescript-internal-plugin/*"]
-    }
+      "~/*": [
+        "src/*"
+      ],
+      "@/*": [
+        "src/*"
+      ],
+      "nativescript-internal-plugin": [
+        "../nativescript-internal-plugin"
+      ],
+      "nativescript-internal-plugin/*": [
+        "../nativescript-internal-plugin/*"
+      ]
+    },
+    "removeComments": false
   },
   "angularCompilerOptions": {
     "strictTemplates": false,
     "strictInjectionParameters": true
   },
-  "include": ["../nativescript-internal-plugin/**/*.ts", "src/**/*.ios.ts", "src/**/*.android.ts"],
-  "files": ["./src/main.ts", "./references.d.ts", "./src/polyfills.ts"],
-  "exclude": ["node_modules", "platforms", "e2e", "../nativescript-internal-plugin/**/*.spec.ts"],
+  "include": [
+    "../nativescript-internal-plugin/**/*.ts",
+    "src/**/*.ios.ts",
+    "src/**/*.android.ts"
+  ],
+  "files": [
+    "./src/main.ts",
+    "./references.d.ts",
+    "./src/polyfills.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "platforms",
+    "e2e",
+    "../nativescript-internal-plugin/**/*.spec.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.spec.json"
