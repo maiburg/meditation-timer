@@ -1,24 +1,24 @@
-Label {
+:host {
+  display: block;
+  width: 50%;
+
+  StackLayout {
+    background-color: grey;
+  }
+
+  ListView {
+    background-color: green;
+  }
+
+  .list-item {
+    color: #fff;
+    background: #111;
+    border-color: #fff;
+    border-bottom-width: 1;
+    border-left-width: 1;
+    border-right-width: 1;
     height: 50;
-    width: 50;
-    margin-right: 10;
-}
-
-StackLayout {
-    // border: 5 solid green;
-    border-color: green;
-    border-width: 5;
-    padding: 10;
-}
-
-#i1 {
-    background: orange;
-}
-
-#i2 {
-    background: green;
-}
-
-#i3 {
-    background: purple;
+    padding-left: 10;
+    width: 100%;
+  };
 }

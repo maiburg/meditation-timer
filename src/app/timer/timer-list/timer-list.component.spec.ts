@@ -1,5 +1,6 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TimerListComponent } from './timer-list.component';
+import { ItemEventData } from '@nativescript/core';
 
 describe('TimerListComponent', () => {
   let component: TimerListComponent;
@@ -17,11 +18,14 @@ describe('TimerListComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('returnTwo() should', () => {
-    it('return 2', () => {
-      const num = 2;
+  describe('onTap() should', () => {
+    it('set output to label name', () => {
+      const event = { index: 1 } as ItemEventData;
 
-      expect(component.returnTwo).toBe(num);
+      component.onTap(event);
+
+      expect(component.output).toBe(component.labelName + component.numbers[event.index]);
+      expect(component.output).toBe('Item 2');
     });
   });
 });

@@ -1,5 +1,13 @@
-<StackLayout orientation="horizontal" height="300">
-    <Label id="i1" text="Item 1" verticalAlignment="top"></Label>
-    <Label id="i2" text="Item 2" verticalAlignment="bottom"></Label>
-    <Label id="i3" text="Item 3" verticalAlignment="top"></Label>
-</StackLayout>
+<ListView [items]="numbers" (itemTap)="onTap($event)" iosEstimatedRowHeight="50">
+  <!--  <StackLayout>-->
+  <ng-template let-numbers="item">
+    <Label
+      [id]="'i' + numbers"
+      class="list-item"
+      [borderTopWidth]="numbers === 1 ? 1 : 0"
+      [text]="labelName + numbers"
+    ></Label>
+  </ng-template>
+  <!--  </StackLayout>-->
+</ListView>
+<StackLayout> <Label [text]="output"></Label> </StackLayout>

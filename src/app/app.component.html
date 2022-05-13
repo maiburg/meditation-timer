@@ -1,9 +1,3 @@
-<!-- <StackLayout>
-  <ns-current-challenge></ns-current-challenge>
-</StackLayout> -->
-<StackLayout>
-  <!-- <app-timer-list></app-timer-list> -->
-
-  <Label *ngIf="showLabel" text="Ich bin ein Label"></Label>
-  <Button text="xxx" (tap)="onTap()"></Button>
-</StackLayout>
+<FlexboxLayout flexDirection="column">
+  <app-timer-list></app-timer-list>
+</FlexboxLayout>
