@@ -17,6 +17,7 @@ export class TimerListComponent implements OnInit {
   ngOnInit(): void {}
 
   onTap(event: ItemEventData): void {
+    console.log(this.labelName + this.numbers[event.index]);
     this.output = this.labelName + this.numbers[event.index];
   }
 }
