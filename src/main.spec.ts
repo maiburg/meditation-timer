@@ -1,4 +1,4 @@
-import '@app/polyfills';
+import './polyfills';
 import 'zone.js/dist/zone-testing.js';
 import { TestBed } from '@angular/core/testing';
 import { platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';

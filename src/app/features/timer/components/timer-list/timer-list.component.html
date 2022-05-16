@@ -1,0 +1,13 @@
+<ListView *ngIf="timers$ | async; let timers" [items]="timers" iosEstimatedRowHeight="50">
+  <ng-template let-timer="item">
+    <Label
+      [id]="'i' + timer[0]"
+      class="list-item"
+      (tap)="onTap(timer)"
+      [borderTopWidth]="timer[0] === 1 ? 1 : 0"
+      [text]="timer"
+    ></Label>
+  </ng-template>
+</ListView>
+<Button text="Timer hinzufügen" (onTap)="addTimer()"></Button>
+<StackLayout> <Label [text]="output"></Label> </StackLayout>
