@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { Timer } from '@app/core/models';
 
 @Component({
   selector: 'ns-timer-add-edit',
@@ -6,6 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./timer-add-edit.component.css'],
   moduleId: module.id
 })
-export class TimerAddEditComponent {
+export class TimerAddEditComponent implements OnInit {
   challengeDescription = '';
+  timer: Timer;
+
+  ngOnInit(): void {}
 }

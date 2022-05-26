@@ -34,16 +34,20 @@ export class SqliteService {
     this.getDBConnection().then(db => db.close());
   }
 
+  deleteDB(): void {
+    Sqlite.deleteDatabase(this.dbName);
+  }
+
   initDB() {
-    if (!Sqlite.exists('mt.db3')) {
+    if (!this.dbExists) {
       this.getDBConnection().then(
         db =>
-          this.sqlStatements.forEach(item => {
+          this.sqlStatements.forEach(item =>
             db.execSQL(...item.statement).then(
               id => console.log(item.type, id || 'DB'),
               error => console.log(item.type, error)
-            );
-          }),
+            )
+          ),
         error => console.log('OPEN DB ERROR', error)
       );
     }
@@ -52,7 +56,7 @@ export class SqliteService {
   fetch(table: string) {
     const args = `SELECT * FROM ${table}`;
 
-    return new Promise<Object>((resolve, reject) => {
+    return new Promise<Object>((resolve, reject) =>
       this.getDBConnection().then(
         db =>
           db.all(args).then(
@@ -60,14 +64,14 @@ export class SqliteService {
             err => console.log(SqlStatementType.select, err)
           ),
         error => console.log('OPEN DB ERROR', error)
-      );
-    }).then();
+      )
+    ).then();
   }
 
   insert(table: string) {
     const args = [`INSERT INTO ${table} (description) VALUES (?)`, ['Ananas']];
 
-    return new Promise<Object>((resolve, reject) => {
+    return new Promise<Object>((resolve, reject) =>
       this.getDBConnection().then(
         db => {
           db.execSQL(...args).then(
@@ -76,8 +80,8 @@ export class SqliteService {
           );
         },
         error => console.log('OPEN DB ERROR', error)
-      );
-    }).then();
+      )
+    ).then();
   }
 
   delete(table: Tables, id?: number) {
@@ -93,5 +97,9 @@ export class SqliteService {
         error => console.log('OPEN DB ERROR', error)
       );
     }).then();
+  }
+
+  get dbExists(): boolean {
+    return Sqlite.exists(this.dbName);
   }
 }

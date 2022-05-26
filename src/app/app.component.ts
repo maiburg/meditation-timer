@@ -7,9 +7,9 @@ import { SqliteService } from '@app/core/services';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private readonly sqlite: SqliteService) {
-    sqlite.initDB();
-  }
+  constructor(private readonly sqlite: SqliteService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sqlite.initDB();
+  }
 }

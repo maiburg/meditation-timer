@@ -14,12 +14,10 @@ describe('TimerFacade', () => {
   });
 
   describe('add() should', () => {
-    const methodUnderTest = () => facade.add();
-
     it('call sqlite.insert() with table name', () => {
       const spy = spyOn(sqlite, 'insert').and.returnValue(Promise.resolve(1));
 
-      methodUnderTest();
+      facade.add();
 
       expect(spy).toHaveBeenCalledOnceWith(facade.tableName);
     });
@@ -27,7 +25,7 @@ describe('TimerFacade', () => {
     it('call this.fetch()', done => {
       const spy = spyOn(facade, 'fetch');
 
-      methodUnderTest();
+      facade.add();
 
       sqlite.insert(facade.tableName).then(() => {
         expect(spy).toHaveBeenCalledTimes(1);
@@ -38,12 +36,10 @@ describe('TimerFacade', () => {
   });
 
   describe('fetch() should', () => {
-    const methodUnderTest = () => facade.fetch();
-
     it('call sqlite.fetch(this.tableName)', () => {
       const spy = spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve([1, 'foo']));
 
-      methodUnderTest();
+      facade.fetch();
 
       expect(spy).toHaveBeenCalledOnceWith(facade.tableName);
     });
@@ -56,7 +52,7 @@ describe('TimerFacade', () => {
       ];
       spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve(rows));
 
-      methodUnderTest();
+      facade.fetch();
 
       facade.list$.pipe(last()).subscribe(value => expect(value).toEqual(rows));
     });
@@ -64,12 +60,11 @@ describe('TimerFacade', () => {
 
   describe('delete() should', () => {
     const id = 1;
-    const methodUnderTest = () => facade.delete(id);
 
     it('call sqlite.delete(this.table, 1)', () => {
       const spy = spyOn(sqlite, 'delete').and.returnValue(Promise.resolve(1));
 
-      methodUnderTest();
+      facade.delete(id);
 
       expect(spy).toHaveBeenCalledOnceWith(facade.tableName, id);
     });
@@ -77,7 +72,7 @@ describe('TimerFacade', () => {
     it('call this.fetch()', done => {
       const spy = spyOn(facade, 'fetch');
 
-      methodUnderTest();
+      facade.delete(id);
 
       sqlite.delete(facade.tableName, id).then(() => {
         expect(spy).toHaveBeenCalledTimes(1);
@@ -87,23 +82,24 @@ describe('TimerFacade', () => {
   });
 
   describe('deleteAll() should', () => {
-    const methodUnderTest = () => facade.deleteAll();
-
     it('call sqlite.delete(this.table, 1)', () => {
       const id = 1;
       const spy = spyOn(sqlite, 'delete').and.returnValue(Promise.resolve(1));
 
-      methodUnderTest();
+      facade.deleteAll();
 
-      expect(spy).toHaveBeenCalledOnceWith(facade.tableName, id);
+      expect(spy).toHaveBeenCalledOnceWith(facade.tableName);
     });
 
-    it('call this.fetch()', () => {
+    it('call this.fetch()', done => {
       const spy = spyOn(facade, 'fetch');
 
-      methodUnderTest();
+      facade.deleteAll();
 
-      expect(spy).toHaveBeenCalledTimes(1);
+      sqlite.delete(facade.tableName).then(() => {
+        expect(spy).toHaveBeenCalledTimes(1);
+      });
+      done();
     });
   });
 });
