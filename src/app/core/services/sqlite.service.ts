@@ -26,7 +26,7 @@ export class SqliteService {
 
   constructor() {}
 
-  getDBConnection(): any {
+  getDBConnection(): Promise<any> {
     return new Sqlite(this.dbName);
   }
 

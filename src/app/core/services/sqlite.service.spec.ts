@@ -20,14 +20,19 @@ describe('SqliteService', () => {
         expect(db.execSQL).toBeDefined();
         expect(db.all).toBeDefined();
         expect(db.get).toBeDefined();
+        expect(db.close).toBeDefined();
       });
     });
   });
 
   describe('closeDBConnection() should', () => {
-    it('call ...', () => {
-      // TODO: write test
-      expect(service).toBeTruthy();
+    it('call service.getDBConnection()', () => {
+      const db = new Sqlite(service.dbName);
+      const spy = spyOn(service, 'getDBConnection').and.returnValue(Promise.resolve(db));
+
+      service.closeDBConnection();
+
+      expect(spy).toHaveBeenCalled();
     });
   });
 
@@ -35,7 +40,7 @@ describe('SqliteService', () => {
     it(`call service.getDBConnection() if dbExists returns FALSE`, () => {
       spyOnProperty(service, 'dbExists', 'get').and.returnValue(false);
       const db = new Sqlite(service.dbName);
-      const spy = spyOn(service, 'getDBConnection').and.returnValue(db);
+      const spy = spyOn(service, 'getDBConnection').and.returnValue(Promise.resolve(db));
 
       service.initDB();
 
