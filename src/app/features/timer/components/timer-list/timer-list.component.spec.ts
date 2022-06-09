@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TimerListComponent } from './timer-list.component';
-import { TimerFacade } from '@app/features/timer/timer.facade';
+
+import { TimerListComponent } from '@app/features/timer/components';
+import { TimerFacade } from '@app/features/timer/services/timer.facade';
 import { Timer } from '@app/core/models';
 
 describe('TimerListComponent', () => {

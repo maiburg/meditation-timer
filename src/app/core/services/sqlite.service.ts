@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ISqlStatement, SqlStatementType, Tables } from '@app/core/models';
+import { ISqlStatement, SqlStatementType, Tables, Timer } from '@app/core/models';
 
 let Sqlite = require('nativescript-sqlite');
 
@@ -53,14 +53,19 @@ export class SqliteService {
     }
   }
 
-  fetch(table: string) {
-    const args = `SELECT * FROM ${table}`;
+  fetch(table: Tables, id?: number) {
+    let statement = `SELECT * FROM ${table}`;
 
-    return new Promise<Object>((resolve, reject) =>
+    if (id) {
+      statement += ` WHERE id=${id}`;
+    }
+
+    return new Promise<Timer[]>((resolve, reject) =>
       this.getDBConnection().then(
         db =>
-          db.all(args).then(
-            rows => resolve(rows),
+          db.all(statement).then(
+            // TODO: Update test
+            rows => resolve(rows.map(row => this.getObjectFromRow(table, row))),
             err => console.log(SqlStatementType.select, err)
           ),
         error => console.log('OPEN DB ERROR', error)
@@ -68,13 +73,13 @@ export class SqliteService {
     ).then();
   }
 
-  insert(table: string) {
-    const args = [`INSERT INTO ${table} (description) VALUES (?)`, ['Ananas']];
+  insert(table: Tables) {
+    const statement = [`INSERT INTO ${table} (description) VALUES (?)`, ['Ananas']];
 
     return new Promise<Object>((resolve, reject) =>
       this.getDBConnection().then(
         db => {
-          db.execSQL(...args).then(
+          db.execSQL(...statement).then(
             id => resolve(id),
             err => console.log(SqlStatementType.insert, err)
           );
@@ -85,7 +90,11 @@ export class SqliteService {
   }
 
   delete(table: Tables, id?: number) {
-    const statement = id ? `DELETE FROM ${table} WHERE id = ${id}` : `DELETE FROM ${table}`;
+    let statement = `DELETE FROM ${table}`;
+
+    if (id) {
+      statement += ` DELETE FROM ${table} WHERE id=${id}`;
+    }
 
     return new Promise<Object>((resolve, reject) => {
       this.getDBConnection().then(
@@ -101,5 +110,16 @@ export class SqliteService {
 
   get dbExists(): boolean {
     return Sqlite.exists(this.dbName);
+  }
+
+  getObjectFromRow(table: Tables, row: any[]): Timer {
+    // TODO: Write test
+    let timer: Timer;
+    let id: number, description: string;
+    [id, description] = row;
+
+    timer = { id, description };
+
+    return timer;
   }
 }

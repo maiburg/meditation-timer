@@ -2,31 +2,32 @@ import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 
-import { TimerAddEditComponent, TimerListComponent } from '@app/features/timer/components';
-
-const routes: Routes = [
+const appRoutes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: '',
-        redirectTo: 'TimerListComponent',
-        pathMatch: 'full'
-      },
-      {
-        path: 'TimerListComponent',
-        component: TimerListComponent
-      },
-      {
-        path: 'TimerAddEditComponent',
-        component: TimerAddEditComponent
-      }
-    ]
+    // component: AppComponent,
+    redirectTo: '/timer',
+    pathMatch: 'full'
+  },
+  {
+    path: 'timer',
+    loadChildren: () => import('@app/features/timer/timer.module').then(m => m.TimerModule)
+  },
+  {
+    path: '**',
+    redirectTo: '/timer',
+    pathMatch: 'full'
   }
 ];
 
 @NgModule({
-  imports: [NativeScriptRouterModule.forRoot(routes)],
+  imports: [
+    NativeScriptRouterModule.forRoot(appRoutes, {
+      scrollPositionRestoration: 'enabled',
+      paramsInheritanceStrategy: 'always',
+      relativeLinkResolution: 'corrected'
+    })
+  ],
   exports: [NativeScriptRouterModule]
 })
 export class AppRoutingModule {}

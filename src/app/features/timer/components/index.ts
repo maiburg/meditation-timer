@@ -1,5 +1,5 @@
 import { TimerListComponent } from './timer-list/timer-list.component';
-import { TimerAddEditComponent } from './timer-add-edit/timer-add-edit.component';
+import { TimerDialogComponent } from './timer-dialog/timer-dialog.component';
 
-export { TimerListComponent, TimerAddEditComponent };
-export const components: any[] = [TimerListComponent, TimerAddEditComponent];
+export { TimerListComponent, TimerDialogComponent };
+export const components: any[] = [TimerListComponent, TimerDialogComponent];

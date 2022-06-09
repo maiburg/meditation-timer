@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, from, Observable, Subject } from 'rxjs';
 
 import { SqliteService } from '@app/core/services';
 import { Tables } from '@app/core/models';
@@ -11,9 +11,7 @@ export class TimerFacade {
   list$: Subject<any[]> = new BehaviorSubject<any[]>(null);
   tableName = Tables.timer;
 
-  constructor(private readonly sqlite: SqliteService) {
-    this.fetch();
-  }
+  constructor(private readonly sqlite: SqliteService) {}
 
   add(): void {
     this.sqlite.insert(this.tableName).then(() => this.fetch());

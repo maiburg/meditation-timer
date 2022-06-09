@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TimerFacade } from '@app/features/timer/timer.facade';
+import { TimerFacade } from '@app/features/timer/services/timer.facade';
 import { SqliteService } from '@app/core/services';
 import { last } from 'rxjs';
 

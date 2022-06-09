@@ -1,23 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimerAddEditComponent } from '@app/features/timer/components/timer-add-edit/timer-add-edit.component';
-import { TimerFacade } from '@app/features/timer/timer.facade';
+import { TimerDialogComponent } from '@app/features/timer/components/timer-dialog/timer-dialog.component';
+import { TimerFacade } from '@app/features/timer/services/timer.facade';
 
-describe('TimerAddEditComponent', () => {
-  let component: TimerAddEditComponent;
-  let fixture: ComponentFixture<TimerAddEditComponent>;
+describe('TimerDialogComponent', () => {
+  let component: TimerDialogComponent;
+  let fixture: ComponentFixture<TimerDialogComponent>;
   let facade: TimerFacade;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TimerAddEditComponent],
+      declarations: [TimerDialogComponent],
       providers: [TimerFacade]
     }).compileComponents();
   });
 
   beforeEach(() => {
     facade = TestBed.inject(TimerFacade);
-    fixture = TestBed.createComponent(TimerAddEditComponent);
+    fixture = TestBed.createComponent(TimerDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

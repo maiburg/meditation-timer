@@ -5,4 +5,6 @@ export interface ITimer {
 export class Timer implements ITimer {
   id: number;
   description: string;
+
+  constructor() {}
 }

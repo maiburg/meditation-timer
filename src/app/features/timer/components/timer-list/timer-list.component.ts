@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { TimerFacade } from '@app/features/timer/timer.facade';
+import { TimerFacade } from '@app/features/timer/services';
 import { Timer } from '@app/core/models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-timer-list',
@@ -12,23 +13,30 @@ import { Timer } from '@app/core/models';
 })
 export class TimerListComponent implements OnInit {
   output = '';
-  timers$: Observable<any[]>;
+  timers$: Observable<Timer[]>;
+  // timers: Timer[];
 
-  constructor(public timerFacade: TimerFacade) {}
+  constructor(private router: Router, private route: ActivatedRoute, private timerFacade: TimerFacade) {}
 
   ngOnInit(): void {
-    this.timers$ = this.timerFacade.list$.asObservable();
+    this.timers$ = this.route.data.pipe(map(data => data['timer']));
+    // this.timers = this.route.snapshot.data['timer'];
+    // this.timers$ = this.timerFacade.fetch();
   }
 
   onTap(timer: Timer): void {
-    console.log('ZUZUZUZU', timer);
-    this.deleteTimer(timer.id);
-    // this.deleteAllTimers();
-    this.output = timer.id + ' ' + timer.description;
+    // console.log('ZUZUZUZU', timer);
+    // this.deleteTimer(timer.id);
+    // // this.deleteAllTimers();
+    // this.output = timer.id + ' ' + timer.description;
   }
 
   addTimer(): void {
+    // this.timers$ = this.timerFacade.list$.asObservable();
+    // this.route.data.pipe(map(data => data['timer'])).subscribe(data => console.log('asdfasdf****', data));
     this.timerFacade.add();
+    // this.router.navigateByUrl('/timer').then();
+    // console.log('REIRJEIRJEIRJERJ****', this.route.snapshot.data['timer']);
   }
 
   deleteTimer(id: number): void {
