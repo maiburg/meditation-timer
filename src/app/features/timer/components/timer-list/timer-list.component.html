@@ -1,4 +1,4 @@
-<ListView *ngIf="timers$ | async; let timers" [items]="timers" iosEstimatedRowHeight="50">
+<ListView *ngIf="timers; let timers" [items]="timers" iosEstimatedRowHeight="50">
   <ng-template let-timer="item">
     <Label
       [id]="'i' + timer.id"

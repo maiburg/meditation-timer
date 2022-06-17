@@ -12,6 +12,7 @@
     "baseUrl": "src",
     "paths": {
       "@app/*": ["app/*"],
+      "@core/*": ["app/core/*"],
       "nativescript-internal-plugin": ["../nativescript-internal-plugin"],
       "nativescript-internal-plugin/*": ["../nativescript-internal-plugin/*"]
     },

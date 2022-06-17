@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { ISqlStatement, SqlStatementType, Tables, Timer } from '@app/core/models';
+import { ISqlStatement, SqlStatementType, Tables } from '@app/core/models';
+import { Timer } from '@core/models/domain';
 
 let Sqlite = require('nativescript-sqlite');
 
@@ -53,7 +54,7 @@ export class SqliteService {
     }
   }
 
-  fetch(table: Tables, id?: number) {
+  fetch(table: Tables, id?: number): Promise<Timer[]> {
     let statement = `SELECT * FROM ${table}`;
 
     if (id) {
@@ -64,7 +65,6 @@ export class SqliteService {
       this.getDBConnection().then(
         db =>
           db.all(statement).then(
-            // TODO: Update test
             rows => resolve(rows.map(row => this.getObjectFromRow(table, row))),
             err => console.log(SqlStatementType.select, err)
           ),

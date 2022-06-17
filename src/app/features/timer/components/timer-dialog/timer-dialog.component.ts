@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Timer } from '@app/core/models';
 import { ActivatedRoute } from '@angular/router';
+
+import { Timer } from '@core/models/domain';
 
 @Component({
   selector: 'ns-timer-dialog',

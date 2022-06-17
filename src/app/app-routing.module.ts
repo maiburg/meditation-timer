@@ -5,7 +5,6 @@ import { NativeScriptRouterModule } from '@nativescript/angular';
 const appRoutes: Routes = [
   {
     path: '',
-    // component: AppComponent,
     redirectTo: '/timer',
     pathMatch: 'full'
   },

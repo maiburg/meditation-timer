@@ -10,7 +10,7 @@ const timerRoutes: Routes = [
     path: '',
     component: TimerListComponent,
     resolve: {
-      timer: TimerResolver
+      timers: TimerResolver
     }
   },
   {

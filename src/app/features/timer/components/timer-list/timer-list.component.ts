@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { TimerFacade } from '@app/features/timer/services';
-import { Timer } from '@app/core/models';
-import { Observable } from 'rxjs';
+import { Timer } from '@core/models/domain';
 
 @Component({
   selector: 'app-timer-list',
@@ -13,15 +12,12 @@ import { Observable } from 'rxjs';
 })
 export class TimerListComponent implements OnInit {
   output = '';
-  timers$: Observable<Timer[]>;
-  // timers: Timer[];
+  timers: Timer[];
 
-  constructor(private router: Router, private route: ActivatedRoute, private timerFacade: TimerFacade) {}
+  constructor(private route: ActivatedRoute, private timerFacade: TimerFacade) {}
 
   ngOnInit(): void {
-    this.timers$ = this.route.data.pipe(map(data => data['timer']));
-    // this.timers = this.route.snapshot.data['timer'];
-    // this.timers$ = this.timerFacade.fetch();
+    this.timers = this.route.snapshot.data['timers'];
   }
 
   onTap(timer: Timer): void {

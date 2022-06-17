@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, from, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
-import { SqliteService } from '@app/core/services';
-import { Tables } from '@app/core/models';
+import { SqliteService } from '@core/services';
+import { Tables } from '@core/models';
+import { Timer } from '@core/models/domain';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class TimerFacade {
   }
 
   fetch(): void {
-    this.sqlite.fetch(this.tableName).then((rows: any[]) => this.list$.next(rows));
+    this.sqlite.fetch(this.tableName).then((rows: Timer[]) => this.list$.next(rows));
   }
 
   delete(id: number): void {

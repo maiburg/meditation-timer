@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SqliteService } from '@app/core/services/sqlite.service';
+import { SqliteService } from '@core/services';
 import { Tables } from '@app/core/models';
+import { Timer } from '@core/models/domain';
 
 let Sqlite = require('nativescript-sqlite');
 
@@ -97,10 +98,10 @@ describe('SqliteService', () => {
     it('return database rows', () => {
       service.initDB();
 
-      service.fetch(Tables.timer).then((rows: any[]) => {
+      service.fetch(Tables.timer).then((rows: Timer[]) => {
         expect(rows.length).toBe(2);
-        expect(rows[0][0]).toBe(1);
-        expect(rows[1][0]).toBe(2);
+        expect(rows[0].id).toBe(1);
+        expect(rows[1].id).toBe(2);
 
         // done();
       });
@@ -112,10 +113,10 @@ describe('SqliteService', () => {
       service.initDB();
 
       service.insert(Tables.timer).then(() =>
-        service.fetch(Tables.timer).then((rows: any[]) => {
+        service.fetch(Tables.timer).then((rows: Timer[]) => {
           expect(rows.length).toBe(3);
-          expect(rows[rows.length - 1][0]).toBe(3);
-          expect(rows[rows.length - 1][1]).toBe('Ananas');
+          expect(rows[rows.length - 1].id).toBe(3);
+          expect(rows[rows.length - 1].description).toBe('Ananas');
         })
       );
 

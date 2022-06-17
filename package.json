@@ -31,6 +31,7 @@
     "@angular-eslint/template-parser": "13.0.0-alpha.1",
     "@angular/cli": "^13.2.5",
     "@angular/compiler-cli": "~13.1.1",
+    "@faker-js/faker": "^7.2.0",
     "@jsdevtools/coverage-istanbul-loader": "3.0.5",
     "@nativescript/android": "8.1.1",
     "@nativescript/ios": "8.1.0",

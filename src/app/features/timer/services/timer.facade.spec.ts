@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+import { last } from 'rxjs';
 
 import { TimerFacade } from '@app/features/timer/services/timer.facade';
-import { SqliteService } from '@app/core/services';
-import { last } from 'rxjs';
+import { Timer } from '@core/models/domain';
+import { SqliteService } from '@core/services';
 
 describe('TimerFacade', () => {
   let facade: TimerFacade;
@@ -37,7 +38,8 @@ describe('TimerFacade', () => {
 
   describe('fetch() should', () => {
     it('call sqlite.fetch(this.tableName)', () => {
-      const spy = spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve([1, 'foo']));
+      const timer: Timer = { id: 1, description: 'foo' };
+      const spy = spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve([timer]));
 
       facade.fetch();
 
@@ -45,16 +47,16 @@ describe('TimerFacade', () => {
     });
 
     it('put fetched data into list$ by calling this.list$.next(rows)', () => {
-      const rows: any[][] = [
-        [1, 'foo'],
-        [2, 'bar'],
-        [3, 'baz']
+      const timers: Timer[] = [
+        { id: 1, description: 'foo' },
+        { id: 2, description: 'bar' },
+        { id: 3, description: 'baz' }
       ];
-      spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve(rows));
+      spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve(timers));
 
       facade.fetch();
 
-      facade.list$.pipe(last()).subscribe(value => expect(value).toEqual(rows));
+      facade.list$.pipe(last()).subscribe(value => expect(value).toEqual(timers));
     });
   });
 
