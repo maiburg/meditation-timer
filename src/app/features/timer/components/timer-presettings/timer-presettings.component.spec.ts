@@ -56,7 +56,7 @@ describe('TimerPresettingsComponent', () => {
       const timer: TimerPresetting = { id: 7, description: 'foo' };
 
       // TODO: write test when code is finished
-      // component.onTap([timer]);
+      // component.onTap([timerPresetting]);
 
       expect(null).toBeNull();
     });

@@ -11,15 +11,17 @@ export class SqliteService {
   sqlStatements: ISqlStatement[] = [
     {
       type: SqlStatementType.create,
-      statement: [`CREATE TABLE IF NOT EXISTS ${Tables.timer} (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT)`]
+      statement: [
+        `CREATE TABLE IF NOT EXISTS ${Tables.timerPresetting} (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT)`
+      ]
     },
     {
       type: SqlStatementType.insert,
-      statement: [`INSERT INTO ${Tables.timer} (description) VALUES (?)`, ['Dies']]
+      statement: [`INSERT INTO ${Tables.timerPresetting} (description) VALUES (?)`, ['Dies']]
     },
     {
       type: SqlStatementType.insert,
-      statement: [`INSERT INTO ${Tables.timer} (description) VALUES (?)`, ['Das']]
+      statement: [`INSERT INTO ${Tables.timerPresetting} (description) VALUES (?)`, ['Das']]
     }
   ];
 

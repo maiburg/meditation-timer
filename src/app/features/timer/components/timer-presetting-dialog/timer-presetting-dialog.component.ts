@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TimerPresetting } from '@core/models/domain';
 
 @Component({
-  selector: 'ns-timer-presetting-dialog',
+  selector: 'ns-timerPresetting-presetting-dialog',
   templateUrl: './timer-presetting-dialog.component.html',
   styleUrls: ['./timer-presetting-dialog.component.css'],
   moduleId: module.id

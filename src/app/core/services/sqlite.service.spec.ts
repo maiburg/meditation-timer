@@ -100,7 +100,7 @@ describe('SqliteService', () => {
     it('return database rows', () => {
       service.initDB();
 
-      service.fetch(Tables.timer).then((rows: TimerPresetting[]) => {
+      service.fetch(Tables.timerPresetting).then((rows: TimerPresetting[]) => {
         expect(rows.length).toBe(2);
         expect(rows[0].id).toBe(1);
         expect(rows[1].id).toBe(2);
@@ -114,8 +114,8 @@ describe('SqliteService', () => {
     it('insert database rows', () => {
       service.initDB();
 
-      service.insert(Tables.timer).then(() =>
-        service.fetch(Tables.timer).then((rows: TimerPresetting[]) => {
+      service.insert(Tables.timerPresetting).then(() =>
+        service.fetch(Tables.timerPresetting).then((rows: TimerPresetting[]) => {
           expect(rows.length).toBe(3);
           expect(rows[rows.length - 1].id).toBe(3);
           expect(rows[rows.length - 1].description).toBe('Ananas');
@@ -130,8 +130,8 @@ describe('SqliteService', () => {
     it('delete a row by id', () => {
       service.initDB();
 
-      service.delete(Tables.timer, 1).then(() =>
-        service.fetch(Tables.timer).then((rows: any[]) => {
+      service.delete(Tables.timerPresetting, 1).then(() =>
+        service.fetch(Tables.timerPresetting).then((rows: any[]) => {
           expect(rows.length).toBe(1);
           expect(rows[0][0]).toBe(2);
         })
@@ -141,8 +141,8 @@ describe('SqliteService', () => {
     it('delete all rows when no id is provided', () => {
       service.initDB();
 
-      service.delete(Tables.timer).then(() =>
-        service.fetch(Tables.timer).then((rows: any[]) => {
+      service.delete(Tables.timerPresetting).then(() =>
+        service.fetch(Tables.timerPresetting).then((rows: any[]) => {
           expect(rows.length).toBeFalsy();
         })
       );

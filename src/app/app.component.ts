@@ -15,6 +15,6 @@ export class AppComponent implements OnInit {
   }
 
   onTap(): void {
-    this.router.navigate(['/timer']).then(() => console.log('CURRENT ROUTE: ', this.router.url));
+    this.router.navigate(['/timerPresetting']).then(() => console.log('CURRENT ROUTE: ', this.router.url));
   }
 }

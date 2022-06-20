@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { TimerModule } from '@app/features/timer/timer.module';
 import { SqliteService } from '@core/services';
 import { Tables } from '@core/models';
 import { TimerPresetting } from '@core/models/domain';
 
 @Injectable()
 export class TimerService {
-  tableName = Tables.timer;
+  tableName = Tables.timerPresetting;
 
   constructor(private readonly sqlite: SqliteService) {}
 

@@ -5,16 +5,16 @@ import { NativeScriptRouterModule } from '@nativescript/angular';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/timer',
+    redirectTo: '/timerPresettings',
     pathMatch: 'full'
   },
   {
-    path: 'timer',
+    path: 'timerPresettings',
     loadChildren: () => import('@app/features/timer/timer.module').then(m => m.TimerModule)
   },
   {
     path: '**',
-    redirectTo: '/timer',
+    redirectTo: '/timerPresettings',
     pathMatch: 'full'
   }
 ];

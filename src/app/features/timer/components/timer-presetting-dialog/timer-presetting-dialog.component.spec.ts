@@ -43,7 +43,7 @@ describe('TimerPresettingDialogComponent', () => {
   });
 
   describe('ngOnInit() should', () => {
-    it('retrieve timer from ActivatedRoute', () => {
+    it('retrieve timerPresetting from ActivatedRoute', () => {
       component.ngOnInit();
 
       expect(component.presetting).toBe(presetting);

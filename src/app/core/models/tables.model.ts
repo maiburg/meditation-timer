@@ -1,3 +1,3 @@
 export enum Tables {
-  timer = 'TimerPresetting'
+  timerPresetting = 'TimerPresetting'
 }
