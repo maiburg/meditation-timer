@@ -20,10 +20,10 @@ describe('StoreService', () => {
 
   it(`should set a new state and select it again`, done => {
     const timer: TimerPresetting = { id: 1, description: 'Some description' };
-    service.set({ timer });
+    service.set({ timerPresetting: timer });
 
     service
-      .select((state: State) => state.timer)
+      .select((state: State) => state.timerPresetting)
       .subscribe(val => {
         expect(val).toEqual(timer);
         done();
