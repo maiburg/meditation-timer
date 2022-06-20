@@ -5,9 +5,7 @@ import { TimerPresetting } from '@core/models/domain';
 
 let Sqlite = require('nativescript-sqlite');
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SqliteService {
   dbName = 'mt.db3';
   sqlStatements: ISqlStatement[] = [

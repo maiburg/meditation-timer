@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { faker } from '@faker-js/faker/locale/de';
 
 import { TimerPresettingDialogComponent } from '@app/features/timer/components';
+import { SqliteService } from '@core/services';
 import { TimerService } from '@app/features/timer/services';
 import { TimerPresetting } from '@core/models/domain';
 
@@ -18,10 +19,10 @@ describe('TimerPresettingDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [],
       declarations: [TimerPresettingDialogComponent],
       providers: [
         TimerService,
+        SqliteService,
         {
           provide: ActivatedRoute,
           useValue: {

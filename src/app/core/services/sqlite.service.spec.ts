@@ -10,7 +10,9 @@ describe('SqliteService', () => {
   let service: SqliteService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [SqliteService]
+    });
     service = TestBed.inject(SqliteService);
     service.deleteDB();
   });

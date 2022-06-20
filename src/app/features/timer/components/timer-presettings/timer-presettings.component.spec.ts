@@ -6,6 +6,7 @@ import { faker } from '@faker-js/faker/locale/de';
 import { TimerPresettingsComponent } from '@app/features/timer/components';
 import { TimerService } from '@app/features/timer/services';
 import { TimerPresetting } from '@core/models/domain';
+import { SqliteService } from '@core/services';
 
 describe('TimerPresettingsComponent', () => {
   let component: TimerPresettingsComponent;
@@ -22,6 +23,7 @@ describe('TimerPresettingsComponent', () => {
       declarations: [TimerPresettingsComponent],
       providers: [
         TimerService,
+        SqliteService,
         {
           provide: ActivatedRoute,
           useValue: {

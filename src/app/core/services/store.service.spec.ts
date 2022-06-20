@@ -11,7 +11,6 @@ describe('StoreService', () => {
     TestBed.configureTestingModule({
       providers: [StoreService]
     });
-
     service = TestBed.inject(StoreService);
   });
 

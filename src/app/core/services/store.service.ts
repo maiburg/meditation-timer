@@ -1,7 +1,9 @@
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, map, Observable } from 'rxjs';
 
 import { State } from '@core/models/core';
 
+@Injectable()
 export class StoreService {
   initialState: State = {
     timer: undefined
