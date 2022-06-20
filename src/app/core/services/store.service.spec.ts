@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { StoreService } from '@core/services';
-import { Timer } from '@core/models/domain';
+import { TimerPresetting } from '@core/models/domain';
 import { State } from '@core/models/core';
 
 describe('StoreService', () => {
@@ -20,7 +20,7 @@ describe('StoreService', () => {
   });
 
   it(`should set a new state and select it again`, done => {
-    const timer: Timer = { id: 1, description: 'Some description' };
+    const timer: TimerPresetting = { id: 1, description: 'Some description' };
     service.set({ timer });
 
     service

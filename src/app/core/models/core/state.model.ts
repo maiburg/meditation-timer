@@ -1,5 +1,5 @@
-import { Timer } from '@core/models/domain';
+import { TimerPresetting } from '@core/models/domain';
 
 export interface State {
-  timer: Timer;
+  timer: TimerPresetting;
 }

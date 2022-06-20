@@ -3,16 +3,16 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { from, Observable } from 'rxjs';
 
 import { Tables } from '@core/models';
-import { Timer } from '@core/models/domain';
+import { TimerPresetting } from '@core/models/domain';
 import { SqliteService } from '@app/core/services';
 
 @Injectable()
-export class TimerResolver implements Resolve<Timer[]> {
+export class TimerResolver implements Resolve<TimerPresetting[]> {
   constructor(private sqlite: SqliteService) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<Timer[]> {
+  resolve(route: ActivatedRouteSnapshot): Observable<TimerPresetting[]> {
     const id = +route?.paramMap.get('timerId') || null;
-    //TODO: Get data from TimerFacade, not from SqliteService
+    //TODO: Get data from TimerService, not from SqliteService
     return from(this.sqlite.fetch(Tables.timer, id));
   }
 }

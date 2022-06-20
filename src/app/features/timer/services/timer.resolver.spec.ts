@@ -6,12 +6,12 @@ import { faker } from '@faker-js/faker/locale/de';
 import { TimerResolver } from '@app/features/timer/services';
 import { SqliteService } from '@core/services';
 import { Tables } from '@core/models';
-import { Timer } from '@core/models/domain';
+import { TimerPresetting } from '@core/models/domain';
 
 describe('TimerResolver', () => {
   let service: TimerResolver, sqlite: SqliteService;
 
-  const timer: Timer = {
+  const timer: TimerPresetting = {
     id: faker.datatype.number({ min: 1, max: 999999 }),
     description: faker.lorem.words(10)
   };

@@ -1,5 +1,5 @@
-import { TimerListComponent } from './timer-list/timer-list.component';
-import { TimerDialogComponent } from './timer-dialog/timer-dialog.component';
+import { TimerPresettingsComponent } from '@app/features/timer/components/timer-presettings/timer-presettings.component';
+import { TimerPresettingDialogComponent } from '@app/features/timer/components/timer-presetting-dialog/timer-presetting-dialog.component';
 
-export { TimerListComponent, TimerDialogComponent };
-export const components: any[] = [TimerListComponent, TimerDialogComponent];
+export { TimerPresettingsComponent, TimerPresettingDialogComponent };
+export const components: any[] = [TimerPresettingsComponent, TimerPresettingDialogComponent];

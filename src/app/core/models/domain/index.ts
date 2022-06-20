@@ -1,1 +1,1 @@
-export * from '@core/models/domain/timer.model';
+export * from '@core/models/domain/timer-presetting.model';

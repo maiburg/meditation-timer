@@ -3,12 +3,12 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 import { SqliteService } from '@core/services';
 import { Tables } from '@core/models';
-import { Timer } from '@core/models/domain';
+import { TimerPresetting } from '@core/models/domain';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TimerFacade {
+export class TimerService {
   list$: Subject<any[]> = new BehaviorSubject<any[]>(null);
   tableName = Tables.timer;
 
@@ -19,7 +19,7 @@ export class TimerFacade {
   }
 
   fetch(): void {
-    this.sqlite.fetch(this.tableName).then((rows: Timer[]) => this.list$.next(rows));
+    this.sqlite.fetch(this.tableName).then((rows: TimerPresetting[]) => this.list$.next(rows));
   }
 
   delete(id: number): void {

@@ -3,30 +3,30 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
 import { faker } from '@faker-js/faker/locale/de';
 
-import { TimerListComponent } from '@app/features/timer/components';
-import { TimerFacade } from '@app/features/timer/services/timer.facade';
-import { Timer } from '@core/models/domain';
+import { TimerPresettingsComponent } from '@app/features/timer/components';
+import { TimerService } from '@app/features/timer/services';
+import { TimerPresetting } from '@core/models/domain';
 
-describe('TimerListComponent', () => {
-  let component: TimerListComponent;
-  let fixture: ComponentFixture<TimerListComponent>;
-  let facade: TimerFacade;
+describe('TimerPresettingsComponent', () => {
+  let component: TimerPresettingsComponent;
+  let fixture: ComponentFixture<TimerPresettingsComponent>;
+  let service: TimerService;
 
-  const timer1: Timer = { id: 1, description: faker.lorem.words(10) };
-  const timer2: Timer = { id: 2, description: faker.lorem.words(10) };
-  const timers: Timer[] = [timer1, timer2];
+  const timer1: TimerPresetting = { id: 1, description: faker.lorem.words(10) };
+  const timer2: TimerPresetting = { id: 2, description: faker.lorem.words(10) };
+  const presettings: TimerPresetting[] = [timer1, timer2];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [TimerListComponent],
+      declarations: [TimerPresettingsComponent],
       providers: [
-        TimerFacade,
+        TimerService,
         {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
-              data: { timers }
+              data: { presettings }
             }
           }
         }
@@ -35,8 +35,8 @@ describe('TimerListComponent', () => {
   });
 
   beforeEach(() => {
-    facade = TestBed.inject(TimerFacade);
-    fixture = TestBed.createComponent(TimerListComponent);
+    service = TestBed.inject(TimerService);
+    fixture = TestBed.createComponent(TimerPresettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -45,13 +45,13 @@ describe('TimerListComponent', () => {
     it('retrieve timers from ActivatedRoute', () => {
       component.ngOnInit();
 
-      expect(component.timers).toEqual(timers);
+      expect(component.presettings).toEqual(presettings);
     });
   });
 
   describe('onTap() should', () => {
     it('call ...', () => {
-      const timer: Timer = { id: 7, description: 'foo' };
+      const timer: TimerPresetting = { id: 7, description: 'foo' };
 
       // TODO: write test when code is finished
       // component.onTap([timer]);
@@ -61,8 +61,8 @@ describe('TimerListComponent', () => {
   });
 
   describe('addTimer() should', () => {
-    it('call timerFacade.add()', () => {
-      const spy = spyOn(facade, 'add');
+    it('call timerService.add()', () => {
+      const spy = spyOn(service, 'add');
 
       component.addTimer();
 
@@ -71,8 +71,8 @@ describe('TimerListComponent', () => {
   });
 
   describe('deleteTimer() should', () => {
-    it('call timerFacade.delete()', () => {
-      const spy = spyOn(facade, 'delete');
+    it('call timerService.delete()', () => {
+      const spy = spyOn(service, 'delete');
 
       component.deleteTimer(1);
 
@@ -81,8 +81,8 @@ describe('TimerListComponent', () => {
   });
 
   describe('deleteAllTimers() should', () => {
-    it('call timerFacade.deleteAll()', () => {
-      const spy = spyOn(facade, 'deleteAll');
+    it('call timerService.deleteAll()', () => {
+      const spy = spyOn(service, 'deleteAll');
 
       component.deleteAllTimers();
 

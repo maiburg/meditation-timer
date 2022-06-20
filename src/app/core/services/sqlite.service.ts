@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { ISqlStatement, SqlStatementType, Tables } from '@app/core/models';
-import { Timer } from '@core/models/domain';
+import { TimerPresetting } from '@core/models/domain';
 
 let Sqlite = require('nativescript-sqlite');
 
@@ -54,14 +54,14 @@ export class SqliteService {
     }
   }
 
-  fetch(table: Tables, id?: number): Promise<Timer[]> {
+  fetch(table: Tables, id?: number): Promise<TimerPresetting[]> {
     let statement = `SELECT * FROM ${table}`;
 
     if (id) {
       statement += ` WHERE id=${id}`;
     }
 
-    return new Promise<Timer[]>((resolve, reject) =>
+    return new Promise<TimerPresetting[]>((resolve, reject) =>
       this.getDBConnection().then(
         db =>
           db.all(statement).then(
@@ -112,9 +112,9 @@ export class SqliteService {
     return Sqlite.exists(this.dbName);
   }
 
-  getObjectFromRow(table: Tables, row: any[]): Timer {
+  getObjectFromRow(table: Tables, row: any[]): TimerPresetting {
     // TODO: Write test
-    let timer: Timer;
+    let timer: TimerPresetting;
     let id: number, description: string;
     [id, description] = row;
 

@@ -2,22 +2,22 @@ import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 
-import { TimerDialogComponent, TimerListComponent } from '@app/features/timer/components';
+import { TimerPresettingDialogComponent, TimerPresettingsComponent } from '@app/features/timer/components';
 import { TimerResolver } from '@app/features/timer/services';
 
 const timerRoutes: Routes = [
   {
     path: '',
-    component: TimerListComponent,
+    component: TimerPresettingsComponent,
     resolve: {
-      timers: TimerResolver
+      presettings: TimerResolver
     }
   },
   {
     path: ':timerId',
-    component: TimerDialogComponent,
+    component: TimerPresettingDialogComponent,
     resolve: {
-      timer: TimerResolver
+      presetting: TimerResolver
     }
   }
 ];

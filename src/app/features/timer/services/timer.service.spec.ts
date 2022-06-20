@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { last } from 'rxjs';
 
-import { TimerFacade } from '@app/features/timer/services/timer.facade';
-import { Timer } from '@core/models/domain';
+import { TimerService } from '@app/features/timer/services';
+import { TimerPresetting } from '@core/models/domain';
 import { SqliteService } from '@core/services';
 
-describe('TimerFacade', () => {
-  let facade: TimerFacade;
+describe('TimerService', () => {
+  let service: TimerService;
   let sqlite: SqliteService;
 
   beforeEach(() => {
-    facade = TestBed.inject(TimerFacade);
+    service = TestBed.inject(TimerService);
     sqlite = TestBed.inject(SqliteService);
   });
 
@@ -18,17 +18,17 @@ describe('TimerFacade', () => {
     it('call sqlite.insert() with table name', () => {
       const spy = spyOn(sqlite, 'insert').and.returnValue(Promise.resolve(1));
 
-      facade.add();
+      service.add();
 
-      expect(spy).toHaveBeenCalledOnceWith(facade.tableName);
+      expect(spy).toHaveBeenCalledOnceWith(service.tableName);
     });
 
     it('call this.fetch()', done => {
-      const spy = spyOn(facade, 'fetch');
+      const spy = spyOn(service, 'fetch');
 
-      facade.add();
+      service.add();
 
-      sqlite.insert(facade.tableName).then(() => {
+      sqlite.insert(service.tableName).then(() => {
         expect(spy).toHaveBeenCalledTimes(1);
       });
 
@@ -38,25 +38,25 @@ describe('TimerFacade', () => {
 
   describe('fetch() should', () => {
     it('call sqlite.fetch(this.tableName)', () => {
-      const timer: Timer = { id: 1, description: 'foo' };
+      const timer: TimerPresetting = { id: 1, description: 'foo' };
       const spy = spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve([timer]));
 
-      facade.fetch();
+      service.fetch();
 
-      expect(spy).toHaveBeenCalledOnceWith(facade.tableName);
+      expect(spy).toHaveBeenCalledOnceWith(service.tableName);
     });
 
     it('put fetched data into list$ by calling this.list$.next(rows)', () => {
-      const timers: Timer[] = [
+      const timers: TimerPresetting[] = [
         { id: 1, description: 'foo' },
         { id: 2, description: 'bar' },
         { id: 3, description: 'baz' }
       ];
       spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve(timers));
 
-      facade.fetch();
+      service.fetch();
 
-      facade.list$.pipe(last()).subscribe(value => expect(value).toEqual(timers));
+      service.list$.pipe(last()).subscribe(value => expect(value).toEqual(timers));
     });
   });
 
@@ -66,17 +66,17 @@ describe('TimerFacade', () => {
     it('call sqlite.delete(this.table, 1)', () => {
       const spy = spyOn(sqlite, 'delete').and.returnValue(Promise.resolve(1));
 
-      facade.delete(id);
+      service.delete(id);
 
-      expect(spy).toHaveBeenCalledOnceWith(facade.tableName, id);
+      expect(spy).toHaveBeenCalledOnceWith(service.tableName, id);
     });
 
     it('call this.fetch()', done => {
-      const spy = spyOn(facade, 'fetch');
+      const spy = spyOn(service, 'fetch');
 
-      facade.delete(id);
+      service.delete(id);
 
-      sqlite.delete(facade.tableName, id).then(() => {
+      sqlite.delete(service.tableName, id).then(() => {
         expect(spy).toHaveBeenCalledTimes(1);
       });
       done();
@@ -88,17 +88,17 @@ describe('TimerFacade', () => {
       const id = 1;
       const spy = spyOn(sqlite, 'delete').and.returnValue(Promise.resolve(1));
 
-      facade.deleteAll();
+      service.deleteAll();
 
-      expect(spy).toHaveBeenCalledOnceWith(facade.tableName);
+      expect(spy).toHaveBeenCalledOnceWith(service.tableName);
     });
 
     it('call this.fetch()', done => {
-      const spy = spyOn(facade, 'fetch');
+      const spy = spyOn(service, 'fetch');
 
-      facade.deleteAll();
+      service.deleteAll();
 
-      sqlite.delete(facade.tableName).then(() => {
+      sqlite.delete(service.tableName).then(() => {
         expect(spy).toHaveBeenCalledTimes(1);
       });
       done();
