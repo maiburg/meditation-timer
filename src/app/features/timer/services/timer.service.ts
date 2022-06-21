@@ -10,10 +10,6 @@ export class TimerService {
 
   constructor(private readonly sqlite: SqliteService) {}
 
-  add(): void {
-    this.sqlite.insert(this.tableName).then();
-  }
-
   loadAllTimerPresettings(): Promise<TimerPresetting[]> {
     return this.sqlite.fetch(this.tableName).then();
   }
@@ -22,11 +18,19 @@ export class TimerService {
     return this.sqlite.fetch(this.tableName, id).then();
   }
 
-  delete(id: number): void {
-    id && this.sqlite.delete(this.tableName, id).then();
+  addTimerPresetting(description: string): void {
+    this.sqlite.insert(this.tableName, description);
   }
 
-  deleteAll(): void {
-    this.sqlite.delete(this.tableName).then();
+  updateTimerPresetting(timerPresetting: TimerPresetting): void {
+    this.sqlite.update(this.tableName, timerPresetting);
+  }
+
+  deleteTimerPresettingById(id: number): void {
+    id && this.sqlite.delete(this.tableName, id);
+  }
+
+  deleteAllTimerPresettings(): void {
+    this.sqlite.delete(this.tableName);
   }
 }

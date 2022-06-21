@@ -39,29 +39,16 @@ export class SqliteService {
     Sqlite.deleteDatabase(this.dbName);
   }
 
-  initDB() {
+  initDB(): void {
     if (!this.dbExists) {
-      this.getDBConnection().then(
-        db =>
-          this.sqlStatements.forEach(item =>
-            db.execSQL(...item.statement).then(
-              id => console.log(item.type, id || 'DB'),
-              error => console.log(item.type, error)
-            )
-          ),
-        error => console.log('OPEN DB ERROR', error)
-      );
+      this.sqlStatements.forEach(item => this.execSQL(item.statement));
     }
   }
 
   fetch(table: Tables, id?: number): Promise<TimerPresetting[]> {
-    let statement = `SELECT * FROM ${table}`;
+    let statement = `SELECT * FROM ${table}` + `${id ? ' WHERE id=' + id : ''}`;
 
-    if (id) {
-      statement += ` WHERE id=${id}`;
-    }
-
-    return new Promise<TimerPresetting[]>((resolve, reject) =>
+    return new Promise<TimerPresetting[]>(resolve =>
       this.getDBConnection().then(
         db =>
           db.all(statement).then(
@@ -73,53 +60,37 @@ export class SqliteService {
     ).then();
   }
 
-  insert(table: Tables) {
-    const statement = [`INSERT INTO ${table} (description) VALUES (?)`, ['Ananas']];
+  insert(table: Tables, description: string): void {
+    this.execSQL([`INSERT INTO ${table} (description) VALUES (?)`, [description]]);
+  }
 
-    return new Promise<Object>((resolve, reject) =>
-      this.getDBConnection().then(
-        db => {
-          db.execSQL(...statement).then(
-            id => resolve(id),
-            err => console.log(SqlStatementType.insert, err)
-          );
-        },
-        error => console.log('OPEN DB ERROR', error)
-      )
-    ).then();
+  update(table: Tables, columns: TimerPresetting): void {
+    this.execSQL([`UPDATE ${table} SET description = '${columns.description}' WHERE id=${columns.id}`]);
   }
 
   delete(table: Tables, id?: number) {
-    let statement = `DELETE FROM ${table}`;
+    this.execSQL([`DELETE FROM ${table}` + `${id ? ' WHERE id=' + id : ''}`]);
+  }
 
-    if (id) {
-      statement += ` DELETE FROM ${table} WHERE id=${id}`;
+  private execSQL(statement: (string | string[])[]): void {
+    this.getDBConnection().then(
+      db => db.execSQL(...statement),
+      error => console.log('OPEN DB ERROR', error)
+    );
+  }
+
+  private getObjectFromRow(table: Tables, row: any[]): TimerPresetting {
+    if (table === Tables.timerPresetting) {
+      let timer: TimerPresetting;
     }
 
-    return new Promise<Object>((resolve, reject) => {
-      this.getDBConnection().then(
-        db =>
-          db.execSQL(statement).then(
-            id => resolve(id),
-            error => console.log(SqlStatementType.delete, error)
-          ),
-        error => console.log('OPEN DB ERROR', error)
-      );
-    }).then();
+    let id: number, description: string;
+    [id, description] = row;
+
+    return { id, description };
   }
 
   get dbExists(): boolean {
     return Sqlite.exists(this.dbName);
-  }
-
-  getObjectFromRow(table: Tables, row: any[]): TimerPresetting {
-    // TODO: Write test
-    let timer: TimerPresetting;
-    let id: number, description: string;
-    [id, description] = row;
-
-    timer = { id, description };
-
-    return timer;
   }
 }

@@ -20,26 +20,7 @@ export class TimerPresettingsComponent implements OnInit {
     this.presettings = this.route.snapshot.data['presettings'];
   }
 
-  onTap(timer: TimerPresetting): void {
-    // console.log('ZUZUZUZU', timer);
-    // this.deleteTimer(timer.id);
-    // // this.deleteAllTimers();
-    // this.output = timer.id + ' ' + timer.description;
-  }
-
-  addTimer(): void {
-    // this.timers$ = this.timerService.list$.asObservable();
-    // this.route.data.pipe(map(data => data['timer'])).subscribe(data => console.log('asdfasdf****', data));
-    this.timerService.add();
-    // this.router.navigateByUrl('/timer').then();
-    // console.log('REIRJEIRJEIRJERJ****', this.route.snapshot.data['timer']);
-  }
-
-  deleteTimer(id: number): void {
-    id && this.timerService.delete(id);
-  }
-
-  deleteAllTimers(): void {
-    this.timerService.deleteAll();
+  reload(): void {
+    this.timerService.loadAllTimerPresettings().then((result: TimerPresetting[]) => (this.presettings = result));
   }
 }

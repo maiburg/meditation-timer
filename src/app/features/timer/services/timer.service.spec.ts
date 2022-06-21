@@ -20,16 +20,6 @@ describe('TimerService', () => {
     sqlite = TestBed.inject(SqliteService);
   });
 
-  describe('add() should', () => {
-    it('call sqlite.insert() with table name', () => {
-      const spy = spyOn(sqlite, 'insert').and.returnValue(Promise.resolve(1));
-
-      service.add();
-
-      expect(spy).toHaveBeenCalledOnceWith(service.tableName);
-    });
-  });
-
   describe('loadAllTimerPresettings() should', () => {
     it('call sqlite.fetch(this.tableName)', () => {
       const spy = spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve([timer1, timer2]));
@@ -65,24 +55,43 @@ describe('TimerService', () => {
     });
   });
 
-  describe('delete() should', () => {
-    const id = 1;
+  describe('addTimerPresetting() should', () => {
+    it('call sqlite.insert() with table name', () => {
+      const spy = spyOn(sqlite, 'insert');
+      const description = faker.lorem.words(10);
 
-    it('call sqlite.delete(this.table, 1)', () => {
-      const spy = spyOn(sqlite, 'delete').and.returnValue(Promise.resolve(1));
+      service.addTimerPresetting(description);
 
-      service.delete(id);
+      expect(spy).toHaveBeenCalledOnceWith(service.tableName, description);
+    });
+  });
+
+  describe('updateTimerPresetting() should', () => {
+    it('call sqlite.update() with table name and timerPresetting', () => {
+      const spy = spyOn(sqlite, 'update');
+
+      service.updateTimerPresetting(timer1);
+
+      expect(spy).toHaveBeenCalledOnceWith(service.tableName, timer1);
+    });
+  });
+
+  describe('deleteTimerPresettingById() should', () => {
+    it('call sqlite.deleteTimerPresettingById(this.table, 1)', () => {
+      const id = 1;
+      const spy = spyOn(sqlite, 'delete');
+
+      service.deleteTimerPresettingById(id);
 
       expect(spy).toHaveBeenCalledOnceWith(service.tableName, id);
     });
   });
 
-  describe('deleteAll() should', () => {
-    it('call sqlite.delete(this.table, 1)', () => {
-      const id = 1;
-      const spy = spyOn(sqlite, 'delete').and.returnValue(Promise.resolve(1));
+  describe('deleteAllTimerPresettings() should', () => {
+    it('call sqlite.deleteTimerPresettingById(this.table)', () => {
+      const spy = spyOn(sqlite, 'delete');
 
-      service.deleteAll();
+      service.deleteAllTimerPresettings();
 
       expect(spy).toHaveBeenCalledOnceWith(service.tableName);
     });

@@ -1,10 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { faker } from '@faker-js/faker/locale/de';
 
 import { SqliteService } from '@core/services';
 import { Tables } from '@app/core/models';
 import { TimerPresetting } from '@core/models/domain';
 
 let Sqlite = require('nativescript-sqlite');
+
+const table = Tables.timerPresetting;
 
 describe('SqliteService', () => {
   let service: SqliteService;
@@ -47,7 +50,7 @@ describe('SqliteService', () => {
 
       service.initDB();
 
-      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledTimes(3);
     });
 
     it(`NOT call service.getDBConnection() if dbExists returns TRUE`, () => {
@@ -104,48 +107,106 @@ describe('SqliteService', () => {
         expect(rows.length).toBe(2);
         expect(rows[0].id).toBe(1);
         expect(rows[1].id).toBe(2);
-
-        // done();
       });
     });
   });
 
   describe('insert() should', () => {
-    it('insert database rows', () => {
+    it('call execSQL()', () => {
+      const spy = spyOn<any>(service, 'execSQL');
+      const description = faker.lorem.words(10);
+      const expected = [`INSERT INTO ${table} (description) VALUES (?)`, [description]];
       service.initDB();
 
-      service.insert(Tables.timerPresetting).then(() =>
-        service.fetch(Tables.timerPresetting).then((rows: TimerPresetting[]) => {
-          expect(rows.length).toBe(3);
-          expect(rows[rows.length - 1].id).toBe(3);
-          expect(rows[rows.length - 1].description).toBe('Ananas');
-        })
-      );
+      service.insert(table, description);
 
-      expect(service).toBeTruthy();
+      expect(spy).toHaveBeenCalledWith(expected);
+    });
+  });
+
+  describe('update() should', () => {
+    it('call execSQL()', () => {
+      const spy = spyOn<any>(service, 'execSQL');
+      const description = faker.lorem.words(10);
+      const id = 1;
+      const columns: TimerPresetting = { id, description };
+      const expected = [`UPDATE ${table} SET description = '${description}' WHERE id=${id}`];
+      service.initDB();
+
+      service.update(table, columns);
+
+      expect(spy).toHaveBeenCalledWith(expected);
     });
   });
 
   describe('delete() should', () => {
-    it('delete a row by id', () => {
+    it('call execSQL()', () => {
+      const spy = spyOn<any>(service, 'execSQL');
+      const id = 1;
+      const expected = [`DELETE FROM ${table}` + `${id ? ' WHERE id=' + id : ''}`];
       service.initDB();
 
-      service.delete(Tables.timerPresetting, 1).then(() =>
-        service.fetch(Tables.timerPresetting).then((rows: any[]) => {
-          expect(rows.length).toBe(1);
-          expect(rows[0][0]).toBe(2);
-        })
-      );
+      service.delete(table, id);
+
+      expect(spy).toHaveBeenCalledWith(expected);
+    });
+  });
+
+  describe('execSQL() should', () => {
+    it('insert a new record', () => {
+      const description = faker.lorem.words(10);
+      const statement = [`INSERT INTO ${table} (description) VALUES (?)`, [description]];
+      service.initDB();
+
+      service['execSQL'](statement);
+
+      service.fetch(Tables.timerPresetting).then((rows: TimerPresetting[]) => {
+        expect(rows.length).toBe(3);
+        expect(rows[rows.length - 1].id).toBe(3);
+        expect(rows[rows.length - 1].description).toBe(description);
+      });
     });
 
-    it('delete all rows when no id is provided', () => {
+    it('update a record', () => {
+      const description = faker.lorem.words(10);
+      const id = 1;
+      const statement = [`UPDATE ${table} SET description = '${description}' WHERE id=${id}`];
       service.initDB();
 
-      service.delete(Tables.timerPresetting).then(() =>
-        service.fetch(Tables.timerPresetting).then((rows: any[]) => {
-          expect(rows.length).toBeFalsy();
-        })
-      );
+      service.fetch(Tables.timerPresetting).then((rows: TimerPresetting[]) => {
+        expect(rows[0].description).not.toBe(description);
+
+        service['execSQL'](statement);
+
+        service.fetch(Tables.timerPresetting).then((rows: TimerPresetting[]) => {
+          expect(rows[0].description).toBe(description);
+        });
+      });
+    });
+
+    it('delete a record', () => {
+      const id = 2;
+      const statement = [`DELETE FROM ${table}` + `${id ? ' WHERE id=' + id : ''}`];
+      service.initDB();
+
+      service.fetch(Tables.timerPresetting).then((rows: TimerPresetting[]) => {
+        expect(rows.length).toBe(2);
+
+        service['execSQL'](statement);
+
+        service.fetch(Tables.timerPresetting).then((rows: TimerPresetting[]) => {
+          expect(rows.length).toBe(1);
+        });
+      });
+    });
+  });
+
+  describe('getObjectFromRow() should', () => {
+    it('return an object of type TimerPresetting', () => {
+      const id = faker.datatype.number({ min: 1, max: 99999 });
+      const description = faker.lorem.words(10);
+
+      expect(service['getObjectFromRow'](table, [id, description])).toEqual({ id, description });
     });
   });
 

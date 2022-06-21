@@ -51,44 +51,15 @@ describe('TimerPresettingsComponent', () => {
     });
   });
 
-  describe('onTap() should', () => {
-    it('call ...', () => {
-      const timer: TimerPresetting = { id: 7, description: 'foo' };
+  describe('reload() should', () => {
+    it('set presettings', () => {
+      const expected = presettings;
+      const spy = spyOn(service, 'loadAllTimerPresettings').and.returnValue(Promise.resolve(presettings));
 
-      // TODO: write test when code is finished
-      // component.onTap([timerPresetting]);
+      component.reload();
 
-      expect(null).toBeNull();
-    });
-  });
-
-  describe('addTimer() should', () => {
-    it('call timerService.add()', () => {
-      const spy = spyOn(service, 'add');
-
-      component.addTimer();
-
-      expect(spy).toHaveBeenCalled();
-    });
-  });
-
-  describe('deleteTimer() should', () => {
-    it('call timerService.delete()', () => {
-      const spy = spyOn(service, 'delete');
-
-      component.deleteTimer(1);
-
-      expect(spy).toHaveBeenCalled();
-    });
-  });
-
-  describe('deleteAllTimers() should', () => {
-    it('call timerService.deleteAll()', () => {
-      const spy = spyOn(service, 'deleteAll');
-
-      component.deleteAllTimers();
-
-      expect(spy).toHaveBeenCalled();
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(component.presettings).toEqual(expected);
     });
   });
 });

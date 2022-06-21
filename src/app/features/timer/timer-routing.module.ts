@@ -19,6 +19,10 @@ const timerRoutes: Routes = [
     resolve: {
       presetting: TimerResolver
     }
+  },
+  {
+    path: 'add',
+    component: TimerPresettingDialogComponent
   }
 ];
 
