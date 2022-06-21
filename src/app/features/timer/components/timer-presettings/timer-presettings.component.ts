@@ -11,7 +11,6 @@ import { TimerPresetting } from '@core/models/domain';
   moduleId: module.id
 })
 export class TimerPresettingsComponent implements OnInit {
-  output = '';
   presettings: TimerPresetting[];
 
   constructor(private route: ActivatedRoute, private timerService: TimerService) {}
