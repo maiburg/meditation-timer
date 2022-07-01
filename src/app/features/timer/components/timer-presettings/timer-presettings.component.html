@@ -1,13 +1,18 @@
-<ListView *ngIf="presettings" [items]="presettings" iosEstimatedRowHeight="50">
-  <ng-template let-presetting="item">
-    <Label
-      [id]="'i' + presetting.id"
-      class="list-item"
-      [nsRouterLink]="[presetting.id]"
-      [borderTopWidth]="presetting.id === 1 ? 1 : 0"
-      [text]="presetting.id + ' ' + presetting.description"
-    ></Label>
-  </ng-template>
-</ListView>
-<Button text="TimerPresetting hinzufügen" nsRouterLink="add"></Button>
-<StackLayout> <Label [text]="output"></Label> </StackLayout>
+<FlexboxLayout flexDirection="column">
+  <ActionBar [title]="output">
+    <NavigationButton text="Back" android.systemIcon="ic_menu_back"></NavigationButton>
+  </ActionBar>
+  <ListView *ngIf="presettings" [items]="presettings" iosEstimatedRowHeight="50">
+    <ng-template let-presetting="item">
+      <Label
+        [id]="'i' + presetting.id"
+        class="list-item"
+        [nsRouterLink]="[presetting.id]"
+        [borderTopWidth]="presetting.id === 1 ? 1 : 0"
+        [text]="presetting.id + ' ' + presetting.description"
+      ></Label>
+    </ng-template>
+  </ListView>
+  <Button text="TimerPresetting hinzufügen" nsRouterLink="add"></Button>
+  <StackLayout> <Label [text]="output"></Label> </StackLayout>
+</FlexboxLayout>
