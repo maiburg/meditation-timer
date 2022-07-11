@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SqliteService } from '@app/core/services';
-import { Router } from '@angular/router';
+import { Device } from '@nativescript/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ns-app',
@@ -8,13 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private sqlite: SqliteService, private router: Router) {}
+  constructor(private sqlite: SqliteService, private translate: TranslateService) {
+    translate.setDefaultLang('de');
+    translate.use('de');
+  }
 
   ngOnInit(): void {
     this.sqlite.initDB();
-  }
-
-  onTap(): void {
-    this.router.navigate(['/timerPresetting']).then(() => console.log('CURRENT ROUTE: ', this.router.url));
   }
 }

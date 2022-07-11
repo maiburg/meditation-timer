@@ -1,14 +1,33 @@
+import { HttpClient } from '@angular/common/http';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from '@app/app-routing.module';
-import { NativeScriptCommonModule, NativeScriptModule } from '@nativescript/angular';
+
+import { NativeScriptCommonModule, NativeScriptHttpClientModule, NativeScriptModule } from '@nativescript/angular';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@core/core.module';
-import { TimerModule } from '@app/features/timer/timer.module';
+import { TimerModule } from '@features/timer/timer.module';
+
+import { translationHttpLoaderFactory } from '@app/utils';
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, NativeScriptCommonModule, AppRoutingModule, CoreModule, TimerModule.forRoot()],
+  imports: [
+    NativeScriptModule,
+    NativeScriptCommonModule,
+    AppRoutingModule,
+    CoreModule,
+    TimerModule.forRoot(),
+    NativeScriptHttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: translationHttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
+  ],
   declarations: [AppComponent],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA]

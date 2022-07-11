@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { AppComponent } from '@app/app.component';
 import { SqliteService } from '@app/core/services';
+import { TranslateLoaderStub } from '@app/utils';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -11,9 +13,14 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateLoaderStub }
+        })
+      ],
       declarations: [AppComponent],
-      providers: [SqliteService]
+      providers: [SqliteService, TranslateService]
     }).compileComponents();
   });
   beforeEach(() => {

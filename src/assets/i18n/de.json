@@ -1,0 +1,11 @@
+{
+  "features": {
+    "timer": {
+      "components": {
+        "timerPresettings": {
+          "back": "Zurück"
+        }
+      }
+    }
+  }
+}

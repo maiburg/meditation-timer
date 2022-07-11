@@ -16,6 +16,8 @@
     "@nativescript/core": "~8.1.1",
     "@nativescript/theme": "~3.0.1",
     "@nativescript/unit-test-runner": "^3.0.2",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "copy-webpack-plugin": "^10.2.4",
     "nativescript-sqlite": "^2.8.6",
     "rxjs": "~7.4.0",

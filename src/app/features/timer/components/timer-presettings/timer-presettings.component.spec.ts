@@ -3,9 +3,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
 import { Page } from '@nativescript/core';
 import { faker } from '@faker-js/faker/locale/de';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { TimerPresettingsComponent } from '@app/features/timer/components';
 import { TimerService } from '@app/features/timer/services';
+import { TranslateLoaderStub } from '@app/utils';
 import { TimerPresetting } from '@core/models/domain';
 import { SqliteService } from '@core/services';
 
@@ -20,11 +22,17 @@ describe('TimerPresettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateLoaderStub }
+        })
+      ],
       declarations: [TimerPresettingsComponent],
       providers: [
         TimerService,
         SqliteService,
+        TranslateService,
         {
           provide: ActivatedRoute,
           useValue: {

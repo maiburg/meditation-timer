@@ -2,11 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { faker } from '@faker-js/faker/locale/de';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { TimerPresettingDialogComponent } from '@app/features/timer/components';
-import { SqliteService } from '@core/services';
 import { TimerService } from '@app/features/timer/services';
+import { TranslateLoaderStub } from '@app/utils';
 import { TimerPresetting } from '@core/models/domain';
+import { SqliteService } from '@core/services';
 
 describe('TimerPresettingDialogComponent', () => {
   let component: TimerPresettingDialogComponent;
@@ -19,11 +21,17 @@ describe('TimerPresettingDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateLoaderStub }
+        })
+      ],
       declarations: [TimerPresettingDialogComponent],
       providers: [
         TimerService,
         SqliteService,
+        TranslateService,
         {
           provide: ActivatedRoute,
           useValue: {
