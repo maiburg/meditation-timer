@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
+import { Page } from '@nativescript/core';
 import { faker } from '@faker-js/faker/locale/de';
 
 import { TimerPresettingsComponent } from '@app/features/timer/components';
@@ -31,7 +32,8 @@ describe('TimerPresettingsComponent', () => {
               data: { presettings }
             }
           }
-        }
+        },
+        Page
       ]
     }).compileComponents();
   });
