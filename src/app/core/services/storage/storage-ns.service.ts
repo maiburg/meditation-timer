@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { clear, getString, remove, setString } from '@nativescript/core/application-settings';
 
-import { StorageService } from '@core/services/storage/storage.service';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class StorageNsService extends StorageService {

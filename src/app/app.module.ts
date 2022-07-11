@@ -8,8 +8,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@core/core.module';
 import { TimerModule } from '@features/timer/timer.module';
+import { AppConfigModule } from '@src/config/app-config.module';
 
 import { translationHttpLoaderFactory } from '@app/utils';
+import '@app/utils/console-color';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -18,6 +20,7 @@ import { translationHttpLoaderFactory } from '@app/utils';
     NativeScriptCommonModule,
     AppRoutingModule,
     CoreModule,
+    AppConfigModule,
     TimerModule.forRoot(),
     NativeScriptHttpClientModule,
     TranslateModule.forRoot({

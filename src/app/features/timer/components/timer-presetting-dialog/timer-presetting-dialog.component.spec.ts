@@ -8,7 +8,8 @@ import { TimerPresettingDialogComponent } from '@app/features/timer/components';
 import { TimerService } from '@app/features/timer/services';
 import { TranslateLoaderStub } from '@app/utils';
 import { TimerPresetting } from '@core/models/domain';
-import { SqliteService } from '@core/services';
+import { LoggerService, SqliteService } from '@core/services';
+import { AppConfigModule } from '@src/config/app-config.module';
 
 describe('TimerPresettingDialogComponent', () => {
   let component: TimerPresettingDialogComponent;
@@ -23,6 +24,7 @@ describe('TimerPresettingDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        AppConfigModule,
         TranslateModule.forRoot({
           loader: { provide: TranslateLoader, useClass: TranslateLoaderStub }
         })
@@ -32,6 +34,7 @@ describe('TimerPresettingDialogComponent', () => {
         TimerService,
         SqliteService,
         TranslateService,
+        LoggerService,
         {
           provide: ActivatedRoute,
           useValue: {
