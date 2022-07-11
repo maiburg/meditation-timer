@@ -1,12 +1,12 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { Page } from '@nativescript/core';
+import { ErrorHandler, NgModule, Optional, SkipSelf } from '@angular/core';
 
+import { MtErrorHandler } from '@core/helpers';
 import { SERVICES } from '@core/services';
 
 console.log('CoreModule loaded');
 
 @NgModule({
-  providers: [...SERVICES, Page]
+  providers: [...SERVICES, { provide: ErrorHandler, useClass: MtErrorHandler }]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
