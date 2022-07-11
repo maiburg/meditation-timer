@@ -1,7 +1,9 @@
 import { platformNativeScript, runNativeScriptAngularApp } from '@nativescript/angular';
 
 import { AppModule } from '@app/app.module';
+import { setAppEvents } from '@app/globals/app-events';
 
-runNativeScriptAngularApp({
-  appModuleBootstrap: () => platformNativeScript().bootstrapModule(AppModule)
-});
+setAppEvents();
+console.log('main before bootstrap');
+runNativeScriptAngularApp({ appModuleBootstrap: () => platformNativeScript().bootstrapModule(AppModule) });
+console.log('main before bootstrap');

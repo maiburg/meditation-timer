@@ -13,6 +13,8 @@ import { AppConfigModule } from '@src/config/app-config.module';
 import { translationHttpLoaderFactory } from '@app/utils';
 import '@app/utils/console-color';
 
+console.log('AppModule loaded');
+
 @NgModule({
   bootstrap: [AppComponent],
   imports: [
@@ -35,4 +37,8 @@ import '@app/utils/console-color';
   providers: [],
   schemas: [NO_ERRORS_SCHEMA]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log('AppModule constructed');
+  }
+}

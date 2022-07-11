@@ -25,7 +25,7 @@ if (ns.Device.os === 'Android') {
 
 if (ns.Device.os === 'iOS') {
   ['warn', 'error', 'log'].forEach(method => {
-    console[method] = console[method].bind(console, method.toUpperCase());
+    console[method] = console[method].bind(console, `########## ${method.toUpperCase()}`);
   });
 }
 

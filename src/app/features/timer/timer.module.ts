@@ -9,6 +9,8 @@ import { TimerRoutingModule } from '@app/features/timer/timer-routing.module';
 
 import { translationHttpLoaderFactory } from '@app/utils';
 
+console.log('TimerModule loaded');
+
 @NgModule({
   imports: [
     NativeScriptCommonModule,
@@ -26,6 +28,10 @@ import { translationHttpLoaderFactory } from '@app/utils';
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class TimerModule {
+  constructor() {
+    console.log('TimerModule constructed');
+  }
+
   static forRoot(): ModuleWithProviders<TimerModule> {
     return {
       ngModule: TimerModule,

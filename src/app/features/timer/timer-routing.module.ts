@@ -5,6 +5,8 @@ import { NativeScriptRouterModule } from '@nativescript/angular';
 import { TimerPresettingDialogComponent, TimerPresettingsComponent } from '@app/features/timer/components';
 import { TimerResolver } from '@app/features/timer/services';
 
+console.log('TimerRoutingModule loaded');
+
 const timerRoutes: Routes = [
   {
     path: '',
@@ -31,4 +33,8 @@ const timerRoutes: Routes = [
   exports: [NativeScriptRouterModule],
   providers: [TimerResolver]
 })
-export class TimerRoutingModule {}
+export class TimerRoutingModule {
+  constructor() {
+    console.log('TimerRoutingModule constructed');
+  }
+}

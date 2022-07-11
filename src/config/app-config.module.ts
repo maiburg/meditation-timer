@@ -10,10 +10,16 @@ export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 
 appConfig.storageServiceClass = appConfig.appType === 'Ns' ? StorageNsService : StorageWebService;
 
+console.log('AppConfigModule loaded');
+
 @NgModule({
   providers: [
     { provide: APP_CONFIG, useValue: appConfig },
     { provide: StorageService, useClass: StorageNsService }
   ]
 })
-export class AppConfigModule {}
+export class AppConfigModule {
+  constructor() {
+    console.log('AppConfigModule constructed');
+  }
+}

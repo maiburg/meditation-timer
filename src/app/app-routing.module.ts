@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 
+console.log('AppRoutingModule loaded');
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -29,4 +31,8 @@ const appRoutes: Routes = [
   ],
   exports: [NativeScriptRouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+  constructor() {
+    console.log('AppRoutingModule constructed');
+  }
+}
