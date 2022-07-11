@@ -9,7 +9,7 @@ import { TimerPresettingDialogComponent } from '@app/features/timer/components';
 import { TimerService } from '@app/features/timer/services';
 import { TranslateLoaderStub } from '@app/utils';
 import { TimerPresetting } from '@core/models/domain';
-import { LoggerService, SqliteService } from '@core/services';
+import { LoggerService, SqliteService, StoreService } from '@core/services';
 import { AppConfigModule } from '@src/config/app-config.module';
 
 describe('TimerPresettingDialogComponent', () => {
@@ -36,6 +36,7 @@ describe('TimerPresettingDialogComponent', () => {
         SqliteService,
         TranslateService,
         LoggerService,
+        StoreService,
         {
           provide: ActivatedRoute,
           useValue: {

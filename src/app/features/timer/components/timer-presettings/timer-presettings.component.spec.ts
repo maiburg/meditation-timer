@@ -6,7 +6,6 @@ import { faker } from '@faker-js/faker/locale/de';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { TimerPresettingsComponent } from '@app/features/timer/components';
-import { TimerService } from '@app/features/timer/services';
 import { TranslateLoaderStub } from '@app/utils';
 import { TimerPresetting } from '@core/models/domain';
 import { SqliteService } from '@core/services';
@@ -14,7 +13,6 @@ import { SqliteService } from '@core/services';
 describe('TimerPresettingsComponent', () => {
   let component: TimerPresettingsComponent;
   let fixture: ComponentFixture<TimerPresettingsComponent>;
-  let service: TimerService;
 
   const timer1: TimerPresetting = { id: 1, description: faker.lorem.words(10) };
   const timer2: TimerPresetting = { id: 2, description: faker.lorem.words(10) };
@@ -30,7 +28,6 @@ describe('TimerPresettingsComponent', () => {
       ],
       declarations: [TimerPresettingsComponent],
       providers: [
-        TimerService,
         SqliteService,
         TranslateService,
         {
@@ -47,7 +44,6 @@ describe('TimerPresettingsComponent', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.inject(TimerService);
     fixture = TestBed.createComponent(TimerPresettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -58,18 +54,6 @@ describe('TimerPresettingsComponent', () => {
       component.ngOnInit();
 
       expect(component.presettings).toEqual(presettings);
-    });
-  });
-
-  describe('reload() should', () => {
-    it('set presettings', () => {
-      const expected = presettings;
-      const spy = spyOn(service, 'loadAllTimerPresettings').and.returnValue(Promise.resolve(presettings));
-
-      component.reload();
-
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(component.presettings).toEqual(expected);
     });
   });
 });

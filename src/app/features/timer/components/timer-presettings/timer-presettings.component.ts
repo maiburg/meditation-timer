@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { TimerService } from '@app/features/timer/services';
-import { TimerPresetting } from '@core/models/domain';
 import { Page } from '@nativescript/core';
+
+import { TimerPresetting } from '@core/models/domain';
 
 @Component({
   selector: 'app-timer-presettings',
@@ -13,16 +12,12 @@ import { Page } from '@nativescript/core';
 export class TimerPresettingsComponent implements OnInit {
   presettings: TimerPresetting[];
 
-  constructor(private route: ActivatedRoute, private timerService: TimerService, page: Page) {
+  constructor(private route: ActivatedRoute, protected page: Page) {
     page.backgroundSpanUnderStatusBar = true;
     page.actionBarHidden = true;
   }
 
   ngOnInit(): void {
     this.presettings = this.route.snapshot.data['presettings'];
-  }
-
-  reload(): void {
-    this.timerService.loadAllTimerPresettings().then((result: TimerPresetting[]) => (this.presettings = result));
   }
 }

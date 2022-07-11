@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker/locale/de';
 
 import { TimerService } from '@app/features/timer/services';
 import { TimerPresetting } from '@core/models/domain';
-import { SqliteService } from '@core/services';
+import { SqliteService, StoreService } from '@core/services';
 
 describe('TimerService', () => {
   let service: TimerService;
@@ -14,7 +14,7 @@ describe('TimerService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TimerService, SqliteService]
+      providers: [TimerService, SqliteService, StoreService]
     });
     service = TestBed.inject(TimerService);
     sqlite = TestBed.inject(SqliteService);
@@ -29,11 +29,13 @@ describe('TimerService', () => {
       expect(spy).toHaveBeenCalledOnceWith(service.tableName);
     });
 
-    it('return fetched data', async () => {
+    it('return fetched data', () => {
       const expected = [timer1, timer2];
       spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve(expected));
 
-      await expectAsync(service.loadAllTimerPresettings()).toBeResolvedTo([timer1, timer2]);
+      service.loadAllTimerPresettings().subscribe(val => {
+        expect(val).toEqual(expected);
+      });
     });
   });
 
@@ -47,11 +49,13 @@ describe('TimerService', () => {
       expect(spy).toHaveBeenCalledOnceWith(service.tableName, id);
     });
 
-    it('return fetched data', async () => {
+    it('return fetched data', () => {
       const expected = [timer1];
       spyOn(sqlite, 'fetch').and.returnValue(Promise.resolve(expected));
 
-      await expectAsync(service.loadTimerPresettingById(1)).toBeResolvedTo(expected);
+      service.loadTimerPresettingById(1).subscribe(val => {
+        expect(val).toEqual(expected);
+      });
     });
   });
 

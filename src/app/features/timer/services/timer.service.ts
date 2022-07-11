@@ -1,21 +1,30 @@
 import { Injectable } from '@angular/core';
 
-import { SqliteService } from '@core/services';
+import { SqliteService, StoreService } from '@core/services';
 import { Tables } from '@core/models';
 import { TimerPresetting } from '@core/models/domain';
+import { State } from '@core/models/core';
+import { filter, from, Observable, of, take } from 'rxjs';
 
 @Injectable()
 export class TimerService {
   tableName = Tables.timerPresetting;
 
-  constructor(private readonly sqlite: SqliteService) {}
+  constructor(private sqlite: SqliteService, private store$: StoreService) {}
 
-  loadAllTimerPresettings(): Promise<TimerPresetting[]> {
-    return this.sqlite.fetch(this.tableName).then();
+  loadAllTimerPresettings(): Observable<TimerPresetting[]> {
+    // this.store$
+    //   .select((state: State) => state.timerPresettings)
+    //   .pipe(
+    //     filter(items => !!items),
+    //     take(1)
+    //   );
+
+    return from(this.sqlite.fetch(this.tableName));
   }
 
-  loadTimerPresettingById(id: number): Promise<TimerPresetting[]> {
-    return this.sqlite.fetch(this.tableName, id).then();
+  loadTimerPresettingById(id: number): Observable<TimerPresetting[]> {
+    return from(this.sqlite.fetch(this.tableName, id));
   }
 
   addTimerPresetting(description: string): void {

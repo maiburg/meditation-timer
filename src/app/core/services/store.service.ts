@@ -6,7 +6,7 @@ import { State } from '@core/models/core';
 @Injectable()
 export class StoreService {
   initialState: State = {
-    timerPresetting: undefined
+    timerPresettings: []
   };
 
   state$ = new BehaviorSubject<State>(this.initialState);
