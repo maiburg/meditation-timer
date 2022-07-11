@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Page } from '@nativescript/core';
 import { faker } from '@faker-js/faker/locale/de';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -42,7 +43,8 @@ describe('TimerPresettingDialogComponent', () => {
               data: { presetting: [presetting] }
             }
           }
-        }
+        },
+        Page
       ]
     }).compileComponents();
   });

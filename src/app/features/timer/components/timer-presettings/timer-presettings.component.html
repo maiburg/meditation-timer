@@ -1,4 +1,4 @@
-<FlexboxLayout flexDirection="column">
+<stack-layout>
   <ListView *ngIf="presettings" [items]="presettings" iosEstimatedRowHeight="50">
     <ng-template let-presetting="item">
       <Label
@@ -11,5 +11,4 @@
     </ng-template>
   </ListView>
   <Button text="TimerPresetting hinzufügen" nsRouterLink="add"></Button>
-  <StackLayout> <Label [text]="output"></Label> </StackLayout>
-</FlexboxLayout>
+</stack-layout>

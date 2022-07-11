@@ -1,11 +1,12 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { Page } from '@nativescript/core';
 
 import { SERVICES } from '@core/services';
 
 console.log('CoreModule loaded');
 
 @NgModule({
-  providers: [...SERVICES]
+  providers: [...SERVICES, Page]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

@@ -1,7 +1,7 @@
-<StackLayout>
-  <TextField class="form-control" hint="Description" [text]="presetting?.description" #desc></TextField>
-  <Button *ngIf="presetting" class="btn" text="Update" (tap)="update(presetting?.id)"></Button>
-  <Button *ngIf="!presetting" class="btn" text="Add" (tap)="add()"></Button>
-  <Button class="btn" text="Back" nsRouterLink="/timerPresettings"></Button>
-  <Button *ngIf="presetting" class="btn" text="Delete" (ontap)="delete(presetting?.id)"></Button>
-</StackLayout>
+<stack-layout>
+  <text-field class="form-control" hint="Description" [text]="presetting?.description" #desc></text-field>
+  <button *ngIf="presetting" class="btn" text="Update" (tap)="update(presetting?.id)"></button>
+  <button *ngIf="!presetting" class="btn" text="Add" (tap)="add()"></button>
+  <button class="btn" text="Back" nsRouterLink="/timerPresettings"></button>
+  <button *ngIf="presetting" class="btn" text="Delete" (ontap)="delete(presetting?.id)"></button>
+</stack-layout>

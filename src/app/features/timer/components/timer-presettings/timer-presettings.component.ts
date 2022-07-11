@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { TimerService } from '@app/features/timer/services';
 import { TimerPresetting } from '@core/models/domain';
-import { Device } from '@nativescript/core';
+import { Page } from '@nativescript/core';
 
 @Component({
   selector: 'app-timer-presettings',
@@ -11,14 +11,11 @@ import { Device } from '@nativescript/core';
   styleUrls: ['./timer-presettings.component.scss']
 })
 export class TimerPresettingsComponent implements OnInit {
-  output = '';
   presettings: TimerPresetting[];
 
-  constructor(private route: ActivatedRoute, private timerService: TimerService) {
-    // page.backgroundColor = '#ff0000';
-    // page.backgroundSpanUnderStatusBar = true;
-    // page.actionBarHidden = true;
-    this.output = Device.osVersion;
+  constructor(private route: ActivatedRoute, private timerService: TimerService, page: Page) {
+    page.backgroundSpanUnderStatusBar = true;
+    page.actionBarHidden = true;
   }
 
   ngOnInit(): void {

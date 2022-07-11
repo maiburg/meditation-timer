@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TextField } from '@nativescript/core';
+import { Page, TextField } from '@nativescript/core';
 
 import { TimerPresetting } from '@core/models/domain';
 import { TimerService } from '@app/features/timer/services';
@@ -15,7 +15,9 @@ export class TimerPresettingDialogComponent implements OnInit {
   @ViewChild('desc') textField: ElementRef;
   presetting: TimerPresetting;
 
-  constructor(private route: ActivatedRoute, private router: Router, private timerService: TimerService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private timerService: TimerService, page: Page) {
+    page.actionBarHidden = true;
+  }
 
   ngOnInit(): void {
     const url = this.router.url;
