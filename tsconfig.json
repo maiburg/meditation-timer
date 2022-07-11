@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "target": "ES2017",
+    "target": "ES5",
+    "lib": ["ES6", "DOM", "ES2015.Iterable"],
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "noEmitHelpers": false,
+    "noEmitHelpers": true,
     "noEmitOnError": true,
     "skipLibCheck": true,
-    "lib": ["ES2017", "DOM"],
     "baseUrl": "src",
     "paths": {
       "@app/*": ["app/*"],
