@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggerService, SqliteService } from '@app/core/services';
+import { SqliteService } from '@app/core/services';
 import { TranslateService } from '@ngx-translate/core';
 
 console.log('AppComponent loaded');

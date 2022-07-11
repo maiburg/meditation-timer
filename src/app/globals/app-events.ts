@@ -1,10 +1,9 @@
 import { Application as app, ApplicationEventData } from '@nativescript/core';
 
-import { setNativeEvents } from '@app/globals/app-events-native.d';
-import { setStatusBarColors } from '@app/utils';
+import { setNativeEvents } from '@app/globals/app-events-native';
 
 export const setAppEvents = () => {
-  // setNativeEvents();
+  setNativeEvents();
 
   app.on(app.launchEvent, (args: ApplicationEventData) => console.logNativeScript(args.eventName));
   app.on(app.displayedEvent, (args: ApplicationEventData) => console.logNativeScript(args.eventName));
@@ -16,6 +15,5 @@ export const setAppEvents = () => {
 
   app.on(app.resumeEvent, (args: ApplicationEventData) => {
     console.logNativeScript(args.eventName);
-    // setStatusBarColors();
   });
 };

@@ -45,13 +45,13 @@ console.logNativeScript = (message?: any, ...optionalParams: any[]) => {
 };
 
 console.logIos = (message?: any, ...optionalParams: any[]) => {
-  message = `IOS EVENT:           ${message}`;
+  message = `IOS EVENT: ${message}`;
   const params = ns.Device.os === 'Android' ? [colorDim, message, colorReset] : [message];
   console.log(...params);
 };
 
 console.logAndroid = (message?: any, ...optionalParams: any[]) => {
-  message = `ANDROID EVENT:     ${message}`;
+  message = `ANDROID EVENT: ${message}`;
   const params = ns.Device.os === 'Android' ? [colorGreen, message, colorReset] : [message];
   console.log(...params);
 };
