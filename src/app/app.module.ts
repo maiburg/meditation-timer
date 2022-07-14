@@ -7,7 +7,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@core/core.module';
-import { TimerModule } from '@features/timer/timer.module';
+import { FEATURE_MODULES } from '@features/.';
 import { AppConfigModule } from '@src/config/app-config.module';
 
 import { translationHttpLoaderFactory } from '@app/utils';
@@ -23,14 +23,10 @@ console.log('AppModule loaded');
     AppRoutingModule,
     CoreModule,
     AppConfigModule,
-    TimerModule.forRoot(),
     NativeScriptHttpClientModule,
+    ...FEATURE_MODULES,
     TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: translationHttpLoaderFactory,
-        deps: [HttpClient]
-      }
+      loader: { provide: TranslateLoader, useFactory: translationHttpLoaderFactory, deps: [HttpClient] }
     })
   ],
   declarations: [AppComponent],
