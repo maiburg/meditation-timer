@@ -15,7 +15,7 @@ import { AppConfigModule } from '@src/config/app-config.module';
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-  let sqlite: SqliteService;
+  let sqlite: SqliteService, backlogService: BacklogService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -44,12 +44,21 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     sqlite = TestBed.inject(SqliteService);
+    backlogService = TestBed.inject(BacklogService);
     fixture.detectChanges();
   });
 
   describe('ngOnInit() should', () => {
     it('call sqlite.initDB()', () => {
       const spy = spyOn(sqlite, 'initDB');
+
+      component.ngOnInit();
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('call backlogService.fetchItems()', () => {
+      const spy = spyOn(backlogService, 'fetchItems');
 
       component.ngOnInit();
 
