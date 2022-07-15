@@ -16,9 +16,15 @@ export class BacklogService {
     private zone: NgZone
   ) {}
 
-  public fetchItems() {
-    this.repo.getPtItems(this.errorHandlerService.handleHttpError, (ptItems: PtItem[]) =>
-      this.zone.run(() => this.store.set({ backlogItems: ptItems }))
-    );
+  fetchItems(): void {
+    this.repo.getPtItems(this.errorHandlerService.handleHttpError, (ptItems: PtItem[]) => this.runInZone(ptItems));
+  }
+
+  private runInZone(ptItems: PtItem[]) {
+    return this.zone.run(() => this.setStore(ptItems));
+  }
+
+  private setStore(ptItems: PtItem[]) {
+    this.store.set({ backlogItems: ptItems });
   }
 }

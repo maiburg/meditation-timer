@@ -6,7 +6,7 @@ import { Observable, throwError } from 'rxjs';
 export class ServerErrorHandlerService {
   constructor() {}
 
-  public handleHttpError(error: HttpErrorResponse): Observable<any> {
+  handleHttpError(error: HttpErrorResponse): Observable<string> {
     return throwError(() => error?.error || 'Server error');
   }
 }

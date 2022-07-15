@@ -10,11 +10,11 @@ import { APP_CONFIG } from '@src/config/app-config.module';
 export class BacklogRepository {
   constructor(@Inject(APP_CONFIG) private readonly config: AppConfig, private readonly http: HttpClient) {}
 
-  getPtItems(errorHandler: (error: any) => Observable<any>, successHandler: (data: PtItem[]) => void) {
+  getPtItems(errorHandler: (error: any) => Observable<string>, successHandler: (data: PtItem[]) => void): void {
     this.http.get(this.backlogUrl).pipe(catchError(errorHandler)).subscribe(successHandler);
   }
 
-  private get backlogUrl() {
+  private get backlogUrl(): string {
     return `${this.config.apiEndpoint}/backlog`;
   }
 }
