@@ -2,23 +2,23 @@ import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 
-console.log('AppRoutingModule loaded');
-
 const appRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: '/timerPresettings',
-    pathMatch: 'full'
-  },
-  {
-    path: 'timerPresettings',
-    loadChildren: () => import('@app/features/timer/timer.module').then(m => m.TimerModule)
-  },
-  {
-    path: '**',
-    redirectTo: '/timerPresettings',
-    pathMatch: 'full'
-  }
+  // {
+  //   path: '',
+  //   redirectTo: '/timerPresettings',
+  //   pathMatch: 'full'
+  // },
+  // {
+  //   path: 'timerPresettings',
+  //   loadChildren: () => import('@app/features/timer/timer.module').then(m => m.TimerModule)
+  // },
+  // {
+  //   path: '**',
+  //   redirectTo: '/timerPresettings',
+  //   pathMatch: 'full'
+  // }
+
+  { path: '', redirectTo: '/', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -31,8 +31,4 @@ const appRoutes: Routes = [
   ],
   exports: [NativeScriptRouterModule]
 })
-export class AppRoutingModule {
-  constructor() {
-    console.log('AppRoutingModule constructed');
-  }
-}
+export class AppRoutingModule {}

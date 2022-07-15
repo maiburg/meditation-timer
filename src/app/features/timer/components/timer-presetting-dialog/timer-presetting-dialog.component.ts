@@ -8,8 +8,7 @@ import { TimerService } from '@app/features/timer/services';
 @Component({
   selector: 'ns-timerPresetting-presetting-dialog',
   templateUrl: './timer-presetting-dialog.component.html',
-  styleUrls: ['./timer-presetting-dialog.component.css'],
-  moduleId: module.id
+  styleUrls: ['./timer-presetting-dialog.component.css']
 })
 export class TimerPresettingDialogComponent implements OnInit {
   @ViewChild('desc') textField: ElementRef;
