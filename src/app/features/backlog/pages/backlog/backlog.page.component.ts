@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'pt-backlog',
-  templateUrl: 'backlog.page.component.html'
+  templateUrl: 'backlog.page.component.pug'
 })
 export class BacklogPageComponent implements OnInit {
   items$: Observable<PtItem[]> = this.store.select<PtItem[]>((state: State) => state.backlogItems);

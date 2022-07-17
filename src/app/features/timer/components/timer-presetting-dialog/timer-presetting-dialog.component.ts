@@ -7,7 +7,7 @@ import { TimerService } from '@app/features/timer/services';
 
 @Component({
   selector: 'ns-timerPresetting-presetting-dialog',
-  templateUrl: './timer-presetting-dialog.component.html',
+  templateUrl: './timer-presetting-dialog.component.pug',
   styleUrls: ['./timer-presetting-dialog.component.css']
 })
 export class TimerPresettingDialogComponent implements OnInit {

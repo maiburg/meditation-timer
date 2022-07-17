@@ -5,7 +5,7 @@ import { PtItem } from '@core/models/domain';
 
 @Component({
   selector: 'pt-list',
-  templateUrl: 'pt-list.component.html',
+  templateUrl: 'pt-list.component.pug',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PtListComponent {

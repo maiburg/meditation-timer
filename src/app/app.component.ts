@@ -7,7 +7,7 @@ console.log('AppComponent loaded');
 
 @Component({
   selector: 'ns-app',
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.pug',
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {

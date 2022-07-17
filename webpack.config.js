@@ -17,6 +17,15 @@ module.exports = env => {
       .use('sass-loader')
       .loader('sass-loader')
       .options({ sassOptions: { indentedSyntax: true } });
+
+    config.module
+      .rule('pug')
+      .test(/\.pug$/)
+      .use('raw-loader')
+      .loader('raw-loader')
+      .end()
+      .use('pug-html-loader')
+      .loader('pug-html-loader');
   });
 
   return webpack.resolveConfig();

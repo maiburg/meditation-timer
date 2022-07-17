@@ -1,0 +1,8 @@
+doctype html
+
+StackLayout
+  TextField.form-control(hint='Description', [text]='presetting?.description', #desc)
+  Button.btn(*ngIf='presetting', text='Update', (tap)='update(presetting?.id)')
+  Button.btn(*ngIf='!presetting', text='Add', (tap)='add()')
+  Button.btn(text='Back', nsRouterLink='/timerPresettings')
+  Button.btn(*ngIf='presetting', text='Delete', (ontap)='delete(presetting?.id)')
