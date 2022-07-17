@@ -5,6 +5,7 @@ import { PtItem } from '@core/models/domain';
 @Component({
   selector: 'pt-list-item',
   templateUrl: 'pt-list-item.component.html',
+  styleUrls: ['./pt-list-item.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PtListItemComponent {

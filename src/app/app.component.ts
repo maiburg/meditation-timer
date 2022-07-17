@@ -8,7 +8,7 @@ console.log('AppComponent loaded');
 @Component({
   selector: 'ns-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
   constructor(private readonly sqlite: SqliteService, private readonly translate: TranslateService) {

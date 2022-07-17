@@ -7,7 +7,7 @@ import { TimerPresetting } from '@core/models/domain';
 @Component({
   selector: 'app-timer-presettings',
   templateUrl: './timer-presettings.component.html',
-  styleUrls: ['./timer-presettings.component.scss']
+  styleUrls: ['./timer-presettings.component.sass']
 })
 export class TimerPresettingsComponent implements OnInit {
   presettings: TimerPresetting[];
