@@ -9,16 +9,16 @@ import { PtLoginModel } from '@core/models/domain';
 })
 export class LoginFormComponent {
   @Output() loginInitiated = new EventEmitter<PtLoginModel>();
+  email = 'alex@email.com';
+  password = 'nuvious';
 
-  public email = 'alex@email.com';
-  public password = 'nuvious';
-
-  public onLoginTap(isValid: boolean) {
+  onLoginTap(isValid: boolean): void {
     if (isValid) {
       const loginModel: PtLoginModel = {
         username: this.email,
         password: this.password
       };
+
       this.loginInitiated.emit(loginModel);
     }
   }
