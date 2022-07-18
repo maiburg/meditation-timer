@@ -6,7 +6,7 @@ import { APP_CONFIG, AppConfigModule } from '@src/config/app-config.module';
 import { LogEntry } from '@core/models/core';
 import { LoggingLevelEnum } from '@core/models/enums';
 
-describe('StoreService', () => {
+xdescribe('LoggerService', () => {
   let service: LoggerService;
 
   beforeEach(() => {

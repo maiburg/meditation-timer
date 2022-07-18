@@ -1,14 +1,15 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { catchError, Observable, tap } from 'rxjs';
 
+import { Utils } from '@app/utils';
 import { AppConfig, State } from '@core/models/core';
 import { PtAuthToken, PtLoginModel, PtUser } from '@core/models/domain';
 import { AuthTokenService } from '@core/services/auth-token.service';
 import { ServerErrorHandlerService } from '@core/services/server-error-handler.service';
-import { StoreService } from '@core/services/store.service';
 import { StorageService } from '@core/services/storage';
+import { StoreService } from '@core/services/store.service';
 import { APP_CONFIG } from '@src/config/app-config.module';
-import { catchError, Observable, tap } from 'rxjs';
 
 const CURRENT_USER_KEY = 'CURRENT_USER_KEY';
 
@@ -23,10 +24,14 @@ export class AuthService {
   }
 
   get currentUser(): PtUser {
-    const currentUser = this.storageService.getItem<PtUser>(CURRENT_USER_KEY);
-    if (!this.store.state.currentUser && currentUser) {
-      this.store.set({ currentUser });
-    }
+    let currentUser = this.storageService.getItem<PtUser>(CURRENT_USER_KEY);
+
+    currentUser?.dateCreated && (currentUser.dateCreated = Utils.formateDate(currentUser.dateCreated));
+    currentUser?.dateModified && (currentUser.dateModified = Utils.formateDate(currentUser.dateModified));
+    currentUser?.dateDeleted && (currentUser.dateDeleted = Utils.formateDate(currentUser.dateDeleted));
+
+    !this.store.state.currentUser && currentUser && this.store.set({ currentUser });
+
     return currentUser;
   }
 
@@ -45,9 +50,7 @@ export class AuthService {
   ) {}
 
   isLoggedIn(): boolean {
-    const hasToken = !!this.authTokenService.token;
-    const hasCurrentUser = !!this.currentUser;
-    return hasToken && hasCurrentUser;
+    return !!this.authTokenService.token && !!this.currentUser;
   }
 
   login(loginModel: PtLoginModel): Observable<PtUser> {
@@ -60,9 +63,11 @@ export class AuthService {
     this.storageService.setItem(CURRENT_USER_KEY, '');
   }
 
-  private loginInternal(loginModel: PtLoginModel) {
+  private loginInternal(
+    loginModel: PtLoginModel
+  ): Observable<string | PtUser | { authToken: PtAuthToken; user: PtUser }> {
     return this.http
-      .post(this.loginUrl, {
+      .post<{ authToken: PtAuthToken; user: PtUser }>(this.loginUrl, {
         loginModel: loginModel,
         grant_type: 'password'
       })

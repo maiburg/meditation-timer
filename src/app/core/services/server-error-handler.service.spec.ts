@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ServerErrorHandlerService } from '@core/services';
 
-describe('ServerErrorHandlerService', () => {
+xdescribe('ServerErrorHandlerService', () => {
   let service: ServerErrorHandlerService;
 
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('ServerErrorHandlerService', () => {
     service = TestBed.inject(ServerErrorHandlerService);
   });
 
-  xdescribe('handleHttpError() should', () => {
+  describe('handleHttpError() should', () => {
     it('return the error message of HttpErrorResponse if it has one', () => {
       const error = {
         error: 'Something went wrong!',
