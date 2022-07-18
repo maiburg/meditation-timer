@@ -17,6 +17,7 @@ export class AuthService {
   private get loginUrl() {
     return `${this.config.apiEndpoint}/auth`;
   }
+
   private get registerUrl() {
     return `${this.config.apiEndpoint}/register`;
   }
