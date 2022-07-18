@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 
 import { AppConfig, State } from '@core/models/core';
 import { PtAuthToken, PtLoginModel, PtUser } from '@core/models/domain';
-import { AuthTokenService, ServerErrorHandlerService, StoreService } from '@core/services';
+import { AuthTokenService } from '@core/services/auth-token.service';
+import { ServerErrorHandlerService } from '@core/services/server-error-handler.service';
+import { StoreService } from '@core/services/store.service';
 import { StorageService } from '@core/services/storage';
 import { APP_CONFIG } from '@src/config/app-config.module';
 import { catchError, Observable, tap } from 'rxjs';
