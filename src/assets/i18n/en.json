@@ -1,20 +1,20 @@
 {
   "app": {
-    "title": "Meine App"
+    "title": "My Application"
   },
   "features": {
     "auth": {
       "pages": {
         "auth": {
           "login": "Login",
-          "register": "Registrieren"
+          "register": "Register"
         }
       }
     },
     "timer": {
       "components": {
         "timerPresettings": {
-          "back": "Zurück"
+          "back": "Back"
         }
       }
     }

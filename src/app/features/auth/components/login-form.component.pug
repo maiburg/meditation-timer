@@ -1,0 +1,9 @@
+doctype html
+
+Label.title([text]="'features.auth.pages.auth.login' | translate")
+StackLayout.auth-form
+  Label.h2(text='email')
+  TextField(hint='email...', [(ngModel)]='email')
+  Label.h2(text='password')
+  TextField(hint='password...', [(ngModel)]='password', secure='true')
+  Button([text]="'features.auth.pages.auth.login' | translate", (tap)='onLoginTap(true)')

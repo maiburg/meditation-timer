@@ -7,12 +7,13 @@ import { State } from '@core/models/core';
 export class StoreService {
   initialState: State = {
     timerPresettings: [],
-    backlogItems: []
+    backlogItems: [],
+    currentUser: undefined
   };
 
   state$ = new BehaviorSubject<State>(this.initialState);
 
-  private get state(): State {
+  get state(): State {
     return this.state$.getValue();
   }
 

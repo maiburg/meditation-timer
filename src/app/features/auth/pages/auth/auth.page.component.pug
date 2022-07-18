@@ -1,0 +1,6 @@
+StackLayout
+  pt-login-form(*ngIf='!loggedIn', (loginInitiated)='onLogin($event)')
+
+  StackLayout(*ngIf='loggedIn')
+    Label([text]="'logged in as ' + loggedInName")
+    Button(text="Logout", (tap)='logout()')
