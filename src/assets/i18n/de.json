@@ -10,13 +10,6 @@
           "register": "Registrieren"
         }
       }
-    },
-    "timer": {
-      "components": {
-        "timerPresettings": {
-          "back": "Zurück"
-        }
-      }
     }
   }
 }

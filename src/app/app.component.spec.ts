@@ -4,14 +4,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { AppComponent } from '@app/app.component';
-import { SqliteService } from '@app/core/services';
 import { TranslateLoaderStub } from '@app/utils';
 import { AppConfigModule } from '@src/config/app-config.module';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-  let sqlite: SqliteService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,23 +22,16 @@ describe('AppComponent', () => {
         })
       ],
       declarations: [AppComponent],
-      providers: [SqliteService, TranslateService]
+      providers: [TranslateService]
     }).compileComponents();
   });
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-    sqlite = TestBed.inject(SqliteService);
     fixture.detectChanges();
   });
 
-  describe('ngOnInit() should', () => {
-    it('call sqlite.initDB()', () => {
-      const spy = spyOn(sqlite, 'initDB');
-
-      component.ngOnInit();
-
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
+  it('should be created', () => {
+    expect(component).toBeTruthy();
   });
 });
