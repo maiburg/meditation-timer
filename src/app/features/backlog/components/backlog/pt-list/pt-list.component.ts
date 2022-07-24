@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { ItemEventData, Observable } from '@nativescript/core';
 
-import { PtItem } from '@core/models/domain';
+import { PtItem } from '../../../../../core/models/domain';
 
 @Component({
   selector: 'pt-list',

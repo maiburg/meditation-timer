@@ -14,6 +14,7 @@
       "@app/*": ["app/*"],
       "@core/*": ["app/core/*"],
       "@features/*": ["app/features/*"],
+      "@shared/*": ["app/shared/*"],
       "@src/*": ["../src/*"],
       "nativescript-internal-plugin": ["../nativescript-internal-plugin"],
       "nativescript-internal-plugin/*": ["../nativescript-internal-plugin/*"]

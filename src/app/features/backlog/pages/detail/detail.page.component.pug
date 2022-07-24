@@ -1,0 +1,4 @@
+ActionBar(title='Item')
+  NavigationButton(text='Back', android.systemIcon='ic_menu_back', (tap)='onNavBackTap()')
+StackLayout.pt-item-detail-header
+  Label.pt-item-detail-header-title([text]='(currentSelectedItem$ | async)?.title')

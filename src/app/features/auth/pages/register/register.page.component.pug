@@ -1,0 +1,7 @@
+GridLayout.register-page-wrapper(rows='50, *, auto')
+  Label.title(row='0', [text]='"features.auth.pages.auth.register" | translate')
+  StackLayout(row='1')
+    pt-register-form((registerInitiated)='onRegister($event)')
+  StackLayout(row='2')
+    Label.smaller(text='Already have an account?')
+    Button([nsRouterLink]='["/auth/login"]', [text]='"features.auth.pages.auth.login" | translate')

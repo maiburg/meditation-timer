@@ -1,25 +1,24 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { NativeScriptModule } from '@nativescript/angular';
+import { NativeScriptModule, NativeScriptRouterModule } from '@nativescript/angular';
 
 import { COMPONENTS } from '@features/backlog/components';
+import { BacklogRoutingModule } from '@features/backlog/backlog-routing.module';
 import { PAGES } from '@features/backlog/pages';
 import { BacklogRepository } from '@features/backlog/repositories';
 import { BacklogService } from '@features/backlog/services';
+import { SharedModule } from '@shared/shared.module';
+
+console.log('BacklogModule loaded');
 
 @NgModule({
-  imports: [
-    NativeScriptModule
-    // TranslateModule.forChild({
-    //   loader: {
-    //     provide: TranslateLoader,
-    //     useFactory: translationHttpLoaderFactory,
-    //     deps: [HttpClient]
-    //   }
-    // }
-  ],
+  imports: [NativeScriptModule, NativeScriptRouterModule, BacklogRoutingModule, SharedModule],
   exports: [...PAGES],
   declarations: [...PAGES, ...COMPONENTS],
-  providers: [BacklogService, BacklogRepository],
+  providers: [BacklogRepository, BacklogService],
   schemas: [NO_ERRORS_SCHEMA]
 })
-export class BacklogModule {}
+export class BacklogModule {
+  constructor() {
+    console.log('BacklogModule constructed');
+  }
+}

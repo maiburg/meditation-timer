@@ -7,7 +7,9 @@ import { State } from '@core/models/core';
 export class StoreService {
   initialState: State = {
     backlogItems: [],
-    currentUser: undefined
+    currentUser: undefined,
+    currentSelectedItem: undefined,
+    selectedPreset: 'open'
   };
 
   state$ = new BehaviorSubject<State>(this.initialState);

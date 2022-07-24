@@ -4,7 +4,7 @@ import { catchError, Observable, tap } from 'rxjs';
 
 import { Utils } from '@app/utils';
 import { AppConfig, State } from '@core/models/core';
-import { PtAuthToken, PtLoginModel, PtUser } from '@core/models/domain';
+import { PtAuthToken, PtLoginModel, PtRegisterModel, PtUser } from '@core/models/domain';
 import { AuthTokenService } from '@core/services/auth-token.service';
 import { ServerErrorHandlerService } from '@core/services/server-error-handler.service';
 import { StorageService } from '@core/services/storage';
@@ -58,6 +58,11 @@ export class AuthService {
     return this.store.select<PtUser>((state: State) => state.currentUser);
   }
 
+  register(registerModel: PtRegisterModel): Observable<PtUser> {
+    this.registerInternal(registerModel).subscribe();
+    return this.store.select<PtUser>((state: State) => state.currentUser);
+  }
+
   logout() {
     this.authTokenService.token = { access_token: '', dateExpires: new Date() };
     this.storageService.setItem(CURRENT_USER_KEY, '');
@@ -78,5 +83,15 @@ export class AuthService {
         }),
         catchError(this.errorHandlerService.handleHttpError)
       );
+  }
+
+  private registerInternal(registerModel: PtRegisterModel) {
+    return this.http.post(this.registerUrl, { registerModel: registerModel }).pipe(
+      tap((data: { authToken: PtAuthToken; user: PtUser }) => {
+        this.authTokenService.token = data.authToken;
+        this.currentUser = data.user;
+      }),
+      catchError(this.errorHandlerService.handleHttpError)
+    );
   }
 }

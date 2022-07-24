@@ -3,7 +3,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { faker } from '@faker-js/faker/locale/de';
 
 import { TranslateLoaderStub } from '@app/utils';
-import { LoginFormComponent } from '@features/auth/components/login-form.component';
+import { LoginFormComponent } from '@features/auth/components/login-form/login-form.component';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;

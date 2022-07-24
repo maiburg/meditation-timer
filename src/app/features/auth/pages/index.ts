@@ -1,5 +1,7 @@
-import { AuthPageComponent } from '@features/auth/pages/auth/auth.page.component';
+import { LoginPageComponent } from '@features/auth/pages/login/login.page.component';
+import { RegisterPageComponent } from '@features/auth/pages/register/register.page.component';
 
-export * from '@features/auth/pages/auth/auth.page.component';
+export * from '@features/auth/pages/login/login.page.component';
+export * from '@features/auth/pages/register/register.page.component';
 
-export const PAGES = [AuthPageComponent];
+export const PAGES = [LoginPageComponent, RegisterPageComponent];

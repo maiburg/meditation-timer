@@ -1,7 +1,7 @@
 import { Application as app } from '@nativescript/core';
 
 class MyDelegate extends UIResponder implements UIApplicationDelegate {
-  public static ObjCProtocols = [UIApplicationDelegate];
+  static ObjCProtocols = [UIApplicationDelegate];
 
   applicationWillFinishLaunchingWithOptions(
     application: UIApplication,
